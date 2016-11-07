@@ -1,8 +1,33 @@
 # Todo App Boilerplate
-## Backend: Node - Express
-## Frontend: React - Redux 
-## Javascript version: ECMA2015/ES6
- 
+Project for create a FullStack boilerplate project to learn ReactJS using Redux over Express/Node API.
+
+## Project Information
+
+### Backend
+- Node
+- Express
+
+### Frontend
+- React
+- Redux 
+
+### Testing
+- Mocha
+- Expect 
+- Enzyme
+- jsdom
+
+### Javascript version
+- ECMA2015/ES6
+
+### Tools
+- Webpack
+
+### UI Libraries
+- Bootstrap
+- Toastr
+
+## Installation/Execution
 
 ### Installing Project
 To install please execute: 
