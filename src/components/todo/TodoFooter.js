@@ -18,7 +18,11 @@ const TodoFooter = ({todos}) => {
 };
 
 TodoFooter.propTypes = {
-    todos: PropTypes.array.isRequired
+    todos: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        completed: PropTypes.bool.isRequired
+    }).isRequired).isRequired
 };
 
 export default TodoFooter;

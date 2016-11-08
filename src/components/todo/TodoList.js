@@ -7,8 +7,10 @@ const TodoList = ({todos}) => {
             <ul>
                 {todos.map((todo, index) =>
                     <Todo
-                        key={index}
+                        key={todo.id}
+                        id={todo.id}
                         title={todo.title}
+                        completed={todo.completed}
                     />
                 )}
             </ul>
@@ -17,7 +19,11 @@ const TodoList = ({todos}) => {
 };
 
 TodoList.propTypes = {
-    todos: PropTypes.array.isRequired
+    todos: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        completed: PropTypes.bool.isRequired
+    }).isRequired).isRequired
 };
 
 export default TodoList;

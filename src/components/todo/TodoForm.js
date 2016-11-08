@@ -1,25 +1,34 @@
 import React, {PropTypes} from 'react';
 
-const TodoForm = ({todo, onChange, onSave, saving}) => {
+const TodoForm = ({todo, onChange, onSave, saving, errors}) => {
+    let wrapperClass = 'input-group';
+    console.log(errors);
+    // if (errors.title && errors.title.length > 0){
+    //     wrapperClass += " " + 'has-error';
+    // }
+
     return (
         <form>
-            <div className="input-group">
+            <div className={wrapperClass}>
                 <input
                     type="text"
                     className="form-control"
-                    placeholder="What do you need to do?"
-                    name={todo.title}
+                    name="title"
                     value={todo.title}
                     onChange={onChange}
                 />
                     <span className="input-group-btn">
-                        <button
+                        <input
                             type="submit"
                             className="btn btn-primary"
                             disabled={saving}
-                            onClick={onSave}><i className="glyphicon glyphicon-ok"/> Add
-                        </button>
+                            value={saving ? 'Saving...' : 'Save '}
+                            onClick={onSave}
+                        />
                     </span>
+            <div>
+
+            </div>
             </div>
         </form>
     );
@@ -29,7 +38,8 @@ TodoForm.propTypes = {
     todo: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
-    saving: PropTypes.bool
+    saving: PropTypes.bool,
+    errors: PropTypes.object
 };
 
 export default TodoForm;
