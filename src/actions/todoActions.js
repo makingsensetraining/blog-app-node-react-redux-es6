@@ -14,11 +14,11 @@ export function loadTodos(){
         console.log('adding a todo - API Call'); //ToDo: remove this
         //ToDo: When API Call finished: call the dispatch
         let todos = [ //ToDo: mocking/hardcoding for now the todos
-            { title: 'Go to shopping' },
-            { title: 'Start Gym' },
-            { title: 'Do the homework' },
-            { title: 'Learn ReactJS' },
-            { title: 'Understand Redux' }
+            { id: 1, title: 'Go to shopping', completed: false },
+            { id: 2, title: 'Start Gym', completed: false },
+            { id: 3, title: 'Do the homework', completed: true },
+            { id: 4, title: 'Learn ReactJS', completed: false },
+            { id: 5, title: 'Understand Redux', completed: true }
         ];
         dispatch(loadTodoSuccess(todos))
     }

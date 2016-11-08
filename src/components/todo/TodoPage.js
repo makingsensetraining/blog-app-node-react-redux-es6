@@ -28,9 +28,11 @@ class TodoPage extends React.Component {
         //ToDo - Check if has some valid title
 
         this.setState({ saving: true });
+        console.log(this.state.todo);
         this.props.actions.saveTodo(this.state.todo)
             .then(() => {
                 toastr.success('Todo saved successfuly');
+                this.setState({ saving: false });
             })
             .catch(error => {
                 toastr.error(error);
@@ -63,7 +65,7 @@ class TodoPage extends React.Component {
                             <TodoList todos={this.props.todos}/>
                         </div>
                         <div className="panel-footer">
-                            <ToDoFooter/>
+                            <ToDoFooter todos={this.props.todos}/>
                         </div>
                     </div>
                 </div>
@@ -82,7 +84,9 @@ TodoPage.propTypes = {
 function mapStatesToProps(state, ownProps) {
 
     let todo = {
-        title: ''
+        id: '',
+        title: '',
+        completed: false
     };
 
     return {
