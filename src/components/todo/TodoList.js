@@ -1,16 +1,17 @@
 import React, {PropTypes} from 'react';
 import Todo from './Todo';
 
-const TodoList = ({todos}) => {
+const TodoList = ({todos, onChange}) => {
     return (
         <div>
-            <ul>
-                {todos.map((todo, index) =>
+            <ul className="todo-list">
+                {todos.map((todo) =>
                     <Todo
                         key={todo.id}
                         id={todo.id}
                         title={todo.title}
                         completed={todo.completed}
+                        onChange={onChange}
                     />
                 )}
             </ul>
@@ -23,7 +24,8 @@ TodoList.propTypes = {
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         completed: PropTypes.bool.isRequired
-    }).isRequired).isRequired
+    }).isRequired).isRequired,
+    onChange: PropTypes.func.isRequired
 };
 
 export default TodoList;

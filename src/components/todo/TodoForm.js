@@ -1,11 +1,7 @@
 import React, {PropTypes} from 'react';
 
 const TodoForm = ({todo, onChange, onSave, saving, errors}) => {
-    let wrapperClass = 'input-group';
-    console.log(errors);
-    // if (errors.title && errors.title.length > 0){
-    //     wrapperClass += " " + 'has-error';
-    // }
+    const wrapperClass = (errors && errors.length > 0) ? 'input-group has-error' : 'input-group';
 
     return (
         <form>
@@ -26,9 +22,9 @@ const TodoForm = ({todo, onChange, onSave, saving, errors}) => {
                             onClick={onSave}
                         />
                     </span>
-            <div>
-
             </div>
+            <div>
+                {errors && <div className="alert alert-danger">{errors}</div>}
             </div>
         </form>
     );
@@ -39,7 +35,7 @@ TodoForm.propTypes = {
     onChange: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
     saving: PropTypes.bool,
-    errors: PropTypes.object
+    errors: PropTypes.string
 };
 
 export default TodoForm;

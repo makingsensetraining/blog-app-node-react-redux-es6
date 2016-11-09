@@ -13,19 +13,19 @@ class TodoPage extends React.Component {
 
         this.state = {
             todo: Object.assign({}, props.todo),
-            errors: {},
+            errors: '',
             saving: false
         };
 
         this.handleUpdateTodoState = this.handleUpdateTodoState.bind(this);
+        this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
         this.handleSaveTodo = this.handleSaveTodo.bind(this);
     }
 
     handleSaveTodo(event){
         event.preventDefault();
-
         console.log(this.state.todo);
-        //ToDo - Check if has some valid title
+        //ToDo - Check if has some valid title (FE side)
 
         this.setState({ saving: true });
 
@@ -48,10 +48,22 @@ class TodoPage extends React.Component {
         return this.setState({todo: todo});
     }
 
+    handleCheckboxChange(todo){
+        console.log(todo);
+        this.props.actions.saveTodo(todo)
+            .then(() => {
+                toastr.success('Todo updated successfully');
+            })
+            .catch(error => {
+                toastr.error(error);
+            });
+    }
+
     resetTodo(){
         this.setState({
             saving: false,
-            todo: Object.assign({}, this.props.todo) //Todo: research a better way?
+            todo: Object.assign({}, this.props.todo), //Todo: exist a better way?
+            errors: ''
         });
     }
 
@@ -66,15 +78,20 @@ class TodoPage extends React.Component {
                                 todo={this.state.todo}
                                 onChange={this.handleUpdateTodoState}
                                 onSave={this.handleSaveTodo}
-                                error={this.state.errors}
+                                errors={this.state.errors}
                                 saving={this.state.saving}
                             />
                         </div>
                         <div className="panel-body">
-                            <TodoList todos={this.props.todos}/>
+                            <TodoList
+                                todos={this.props.todos}
+                                onChange={this.handleCheckboxChange}
+                            />
                         </div>
                         <div className="panel-footer">
-                            <TodoFooter todos={this.props.todos}/>
+                            <TodoFooter
+                                todos={this.props.todos}
+                            />
                         </div>
                     </div>
                 </div>

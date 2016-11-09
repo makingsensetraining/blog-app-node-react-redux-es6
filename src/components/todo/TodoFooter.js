@@ -6,12 +6,22 @@ const TodoFooter = ({todos}) => {
     const pending = quantity - completedItems;
 
     return (
-        <div>
+        <div className="clearfix">
             <div id="info">
                 <strong>{quantity}</strong> items on List || Completed: {completedItems} || Active: {pending}
             </div>
-            <div id="filters">
-                <p> Filters: Completed | Active</p>
+            <div id="filters" className="pull-right">
+                <button className="btn btn-default">
+                    All
+                </button>
+                &nbsp;
+                <button className="btn btn-default">
+                    Active
+                </button>
+                &nbsp;
+                <button className="btn btn-default">
+                    Completed
+                </button>
             </div>
         </div>
     );

@@ -16,7 +16,7 @@ const generateNextId = (todos) => {
     let lastId = 0;
     todos.map(todo => {
         if (todo.id > lastId) {
-            lastId = todo.id
+            lastId = todo.id;
         }
     });
 
