@@ -68,6 +68,26 @@ class TodoApi {
             }, delay);
         });
     }
+
+    static filterTodo(filterType){
+        let todosFiltered = Object.assign([], todos);
+        switch (filterType){
+            case 'ACTIVE':
+                todosFiltered = todosFiltered.filter(todo => todo.completed == false);
+                break;
+            case 'COMPLETED':
+                todosFiltered = todosFiltered.filter(todo => todo.completed == true);
+                break;
+            case 'ALL':
+            default:
+        }
+
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(todosFiltered);
+            }, delay);
+        });
+    }
 }
 
 export default TodoApi;

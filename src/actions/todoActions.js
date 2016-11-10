@@ -18,6 +18,10 @@ export function deleteTodoSuccess(todoId){
     return { type: types.DELETE_TODO_SUCCESS, todoId };
 }
 
+export function filterTodoSuccess(todos){
+    return { type: types.FILTER_TODO_SUCCESS, todos };
+}
+
 export function loadTodos(){
     return dispatch => {
         return todoAPI.getAllTodos().then(todos => {
@@ -47,6 +51,16 @@ export function deleteTodo(todoId){
             throw(error);
         });
     };
+}
+
+export function filterTodo(filterType){
+    return dispatch => {
+        return todoAPI.filterTodo(filterType).then(todos => {
+            dispatch(filterTodoSuccess(todos));
+        }).catch(error => {
+            throw(error);
+        });
+    }
 }
 
 /*

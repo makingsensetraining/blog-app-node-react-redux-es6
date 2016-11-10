@@ -4,11 +4,9 @@ import initialState from './initialState';
 export default function todoReducer(state = initialState.todos, action){
     switch (action.type){
         case types.LOAD_TODO_SUCCESS:
-            console.log(action.todos);
             return action.todos;
 
         case types.CREATE_TODO_SUCCESS:
-            console.log(action.todo);
             return [
                 ...state,
                 Object.assign({}, action.todo)
@@ -26,6 +24,9 @@ export default function todoReducer(state = initialState.todos, action){
             return [
                 ...state.filter(todo => todo.id !== action.todoId)
             ];
+
+        case types.FILTER_TODO_SUCCESS:
+            return action.todos;
 
         default:
             return state;

@@ -14,13 +14,15 @@ class TodoPage extends React.Component {
         this.state = {
             todo: Object.assign({}, props.todo),
             errors: '',
-            saving: false
+            saving: false,
+            filter: 'ALL'
         };
 
         this.handleUpdateTodoState = this.handleUpdateTodoState.bind(this);
         this.handleUpdateTodoCompletedChange = this.handleUpdateTodoCompletedChange.bind(this);
         this.handleSaveTodo = this.handleSaveTodo.bind(this);
         this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
+        this.handleFilter = this.handleFilter.bind(this);
     }
 
     handleSaveTodo(event){
@@ -59,7 +61,6 @@ class TodoPage extends React.Component {
     }
 
     handleDeleteTodo(todoId){
-        event.preventDefault();
         this.props.actions.deleteTodo(todoId)
             .then(() => {
                 toastr.success('Todo removed');
@@ -67,6 +68,14 @@ class TodoPage extends React.Component {
             .catch(error => {
                 toastr.error(error);
             });
+    }
+
+    handleFilter(filterType){
+        this.setState({
+           filter: filterType
+        });
+
+        this.props.actions.filterTodo(filterType);
     }
 
     resetTodo(){
@@ -102,6 +111,8 @@ class TodoPage extends React.Component {
                         <div className="panel-footer">
                             <TodoFooter
                                 todos={this.props.todos}
+                                filter={this.state.filter}
+                                filterFunc={this.handleFilter}
                             />
                         </div>
                     </div>
