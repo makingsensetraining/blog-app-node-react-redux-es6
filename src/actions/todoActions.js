@@ -21,7 +21,7 @@ export function loadTodos(){
         }).catch(error => {
             throw(error);
         });
-    }
+    };
 }
 
 export function saveTodo(todo){

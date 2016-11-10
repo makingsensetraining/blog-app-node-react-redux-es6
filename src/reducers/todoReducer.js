@@ -16,9 +16,11 @@ export default function todoReducer(state = initialState.todos, action){
 
         case types.UPDATE_TODO_SUCCESS:
             return [
-                ...state.filter(todo => todo.id !== action.todo.id),
+                ...state.filter(todo => todo.id !== action.todo.id), //We remove the updated item from the list.
                 Object.assign({}, action.todo)
-            ];
+            ].sort((a, b) => { //After the array is with all the elements, we sort by todoId alphabetically
+                return a.id - b.id;
+            });
 
         default:
             return state;

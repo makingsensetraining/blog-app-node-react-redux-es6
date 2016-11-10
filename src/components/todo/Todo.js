@@ -45,7 +45,6 @@ class Todo extends React.Component {
                     &nbsp;
                     <a href="#"><i className="glyphicon glyphicon-trash"> </i></a>
                 </div>
-
             </li>
         );
     }
