@@ -9,6 +9,7 @@ class Todo extends React.Component {
         };
 
         this.toggleCheckbox = this.toggleCheckbox.bind(this);
+        this.deleteTodo = this.deleteTodo.bind(this);
     }
 
     toggleCheckbox(){
@@ -23,6 +24,10 @@ class Todo extends React.Component {
         };
 
         this.props.onChange(todo);
+    }
+
+    deleteTodo(){
+        this.props.onDelete(this.props.id);
     }
 
     render() {
@@ -43,7 +48,7 @@ class Todo extends React.Component {
                         /> {props.title}
                     </label>
                     &nbsp;
-                    <a href="#"><i className="glyphicon glyphicon-trash"> </i></a>
+                    <a href="#" onClick={this.deleteTodo}><i className="glyphicon glyphicon-trash"> </i></a>
                 </div>
             </li>
         );
@@ -54,7 +59,8 @@ Todo.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     completed: PropTypes.bool.isRequired,
-    onChange: PropTypes.func.isRequired
+    onChange: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired
 };
 
 export default Todo;

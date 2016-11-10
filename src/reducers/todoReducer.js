@@ -22,6 +22,11 @@ export default function todoReducer(state = initialState.todos, action){
                 return a.id - b.id;
             });
 
+        case types.DELETE_TODO_SUCCESS:
+            return [
+                ...state.filter(todo => todo.id !== action.todoId)
+            ];
+
         default:
             return state;
     }

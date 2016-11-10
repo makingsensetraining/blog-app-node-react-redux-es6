@@ -18,13 +18,13 @@ class TodoPage extends React.Component {
         };
 
         this.handleUpdateTodoState = this.handleUpdateTodoState.bind(this);
-        this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+        this.handleUpdateTodoCompletedChange = this.handleUpdateTodoCompletedChange.bind(this);
         this.handleSaveTodo = this.handleSaveTodo.bind(this);
+        this.handleDeleteTodo = this.handleDeleteTodo.bind(this);
     }
 
     handleSaveTodo(event){
         event.preventDefault();
-        console.log(this.state.todo);
         //ToDo - Check if has some valid title (FE side)
 
         this.setState({ saving: true });
@@ -48,11 +48,21 @@ class TodoPage extends React.Component {
         return this.setState({todo: todo});
     }
 
-    handleCheckboxChange(todo){
-        console.log(todo);
+    handleUpdateTodoCompletedChange(todo){
         this.props.actions.saveTodo(todo)
             .then(() => {
                 toastr.success('Todo updated successfully');
+            })
+            .catch(error => {
+                toastr.error(error);
+            });
+    }
+
+    handleDeleteTodo(todoId){
+        event.preventDefault();
+        this.props.actions.deleteTodo(todoId)
+            .then(() => {
+                toastr.success('Todo removed');
             })
             .catch(error => {
                 toastr.error(error);
@@ -85,7 +95,8 @@ class TodoPage extends React.Component {
                         <div className="panel-body">
                             <TodoList
                                 todos={this.props.todos}
-                                onChange={this.handleCheckboxChange}
+                                onChange={this.handleUpdateTodoCompletedChange}
+                                onDelete={this.handleDeleteTodo}
                             />
                         </div>
                         <div className="panel-footer">

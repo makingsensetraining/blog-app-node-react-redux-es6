@@ -10,8 +10,12 @@ export function createTodoSuccess(todo){
     return { type: types.CREATE_TODO_SUCCESS, todo };
 }
 
-export function updateCourseSuccess(todo){
+export function updateTodoSuccess(todo){
     return { type: types.UPDATE_TODO_SUCCESS, todo };
+}
+
+export function deleteTodoSuccess(todoId){
+    return { type: types.DELETE_TODO_SUCCESS, todoId };
 }
 
 export function loadTodos(){
@@ -27,8 +31,18 @@ export function loadTodos(){
 export function saveTodo(todo){
     return (dispatch, getState) => {
         return todoAPI.saveTodo(todo).then(todoSaved => {
-            todo.id ? dispatch(updateCourseSuccess(todoSaved)) :
+            todo.id ? dispatch(updateTodoSuccess(todoSaved)) :
                 dispatch(createTodoSuccess(todoSaved));
+        }).catch(error => {
+            throw(error);
+        });
+    };
+}
+
+export function deleteTodo(todoId){
+    return dispatch => {
+        return todoAPI.deleteTodo(todoId).then(() => {
+            dispatch(deleteTodoSuccess(todoId));
         }).catch(error => {
             throw(error);
         });
