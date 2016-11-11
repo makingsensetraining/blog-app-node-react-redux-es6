@@ -21,15 +21,15 @@ const TodoFooter = ({todos, filter, filterFunc}) => {
             all = true;
     }
 
-    var localFilterAll = function(){
+    let localFilterAll = function(){
         filterFunc('ALL');
     };
 
-    var localFilterActive = function(){
+    let localFilterActive = function(){
         filterFunc('ACTIVE');
     };
 
-    var localFilterComplete = function(){
+    let localFilterComplete = function(){
         filterFunc('COMPLETED');
     };
 
