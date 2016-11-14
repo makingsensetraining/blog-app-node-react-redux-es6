@@ -1,4 +1,4 @@
-# Todo App Boilerplate
+# Making Sense LLC - Labs - Blog App Starter Kit
 Project for create a FullStack boilerplate project to learn ReactJS using Redux over Express/Node API.
 
 ## Project Information
