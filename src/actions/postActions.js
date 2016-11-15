@@ -2,6 +2,20 @@ import * as types from './actionTypes';
 import blogAPI from '../api/mockBlogApi';
 import fetch from 'isomorphic-fetch';
 
+export function loadPostSuccess(posts){
+    return { type: types.LOAD_POST_SUCCESS, posts };
+}
+
+export function loadPosts(){
+    return dispatch => {
+        return blogAPI.getAllPosts().then(posts => {
+            dispatch(loadPostSuccess(posts));
+        }).catch(error => {
+            throw(error);
+        })
+    }
+}
+
 
 
 

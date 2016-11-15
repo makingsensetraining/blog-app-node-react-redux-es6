@@ -13,13 +13,16 @@ const Header = () => {
                         <IndexLink to="/" activeClassName="active"><i className="glyphicon glyphicon-home"/> Home</IndexLink>
                     </li>
                     <li>
+                        <IndexLink to="blog" activeClassName="active"><i className="glyphicon glyphicon-th"/> Blog</IndexLink>
+                    </li>
+                    <li>
                         <Link to="/about" activeClassName="active"><i className="glyphicon glyphicon-exclamation-sign"/> About</Link>
                     </li>
                 </ul>
                 <div className="navbar-right">
                     <ul className="nav navbar-nav">
                         <li className="dropdown">
-                            <a href="#"><i className="glyphicon glyphicon-user"></i> Login</a>
+                            <a href="#"><i className="glyphicon glyphicon-user"> </i> Login</a>
                         </li>
                     </ul>
                 </div>

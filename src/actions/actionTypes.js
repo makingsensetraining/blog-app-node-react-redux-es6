@@ -1,0 +1,1 @@
+export const LOAD_POST_SUCCESS = 'LOAD_POST_SUCCESS';

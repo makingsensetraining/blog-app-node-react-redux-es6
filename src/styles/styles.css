@@ -1,0 +1,24 @@
+.posts-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.posts-list li {
+    position: relative;
+    font-size: 16px;
+    border-bottom: 1px solid #ededed;
+}
+
+
+.post-info {
+    display: flex;
+}
+
+.left {
+    flex: 0 0 70%;
+}
+
+.right {
+    flex: 1;
+}

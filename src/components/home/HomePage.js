@@ -7,7 +7,7 @@ class HomePage extends React.Component {
             <div className="jumbotron">
                 <h1>Blog App</h1>
                 <p>Node, React, Redux and React Router in ES6 for ultra-respositve webapps.</p>
-                <Link to="posts" className="btn btn-primary btn-lg">Check the latests posts</Link>
+                <Link to="blog" className="btn btn-primary btn-lg">Check the latests posts</Link>
             </div>
         );
     }
