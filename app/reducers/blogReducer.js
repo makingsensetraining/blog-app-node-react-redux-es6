@@ -6,6 +6,12 @@ export default function blogReducer(state = initialState.posts, action){
         case types.LOAD_POST_SUCCESS:
             return action.posts;
 
+        case types.CREATE_POST_SUCCESS:
+            return [
+                ...state,
+                Object.assign({}, action.post),
+            ];
+
         default:
             return state;
     }

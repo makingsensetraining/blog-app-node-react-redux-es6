@@ -5,6 +5,14 @@ export function loadPostSuccess(posts){
     return { type: types.LOAD_POST_SUCCESS, posts };
 }
 
+export function createPostSuccess(post){
+    return { type: types.CREATE_POST_SUCCESS, post };
+}
+
+export function updatePostSuccess(post){
+    return { type: types.UPDATE_POST_SUCCESS, post };
+}
+
 export function loadPosts(){
     return dispatch => {
 
@@ -17,6 +25,16 @@ export function loadPosts(){
     };
 }
 
+export function createPost(post){
+    return (dispatch, getState) => {
+        return blogAPI.savePost(post).then(postSaved => {
+            post.id ? dispatch(updatePostSuccess(postSaved)) :
+                dispatch(createPostSuccess(postSaved));
+        }).catch(error => {
+            throw(error);
+        })
+    }
+}
 
 
 
