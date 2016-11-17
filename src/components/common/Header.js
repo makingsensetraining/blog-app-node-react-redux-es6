@@ -22,7 +22,7 @@ const Header = () => {
                 <div className="navbar-right">
                     <ul className="nav navbar-nav">
                         <li className="dropdown">
-                            <a href="#"><i className="glyphicon glyphicon-user"> </i> Login</a>
+                            <a href="#"><i className="glyphicon glyphicon-user"/> Login</a>
                         </li>
                     </ul>
                 </div>

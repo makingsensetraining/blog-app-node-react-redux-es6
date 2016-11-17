@@ -12,7 +12,7 @@ export default (
         <Redirect from="/" to="/app" />
         <Route path="/app/blog" component={BlogPage}/>
         <Route path="/app/about" component={AboutPage}/>
-        <Route path="*" component={ NotFound } />
+        <Route path="*" component={NotFound} />
     </Route>
 
 );

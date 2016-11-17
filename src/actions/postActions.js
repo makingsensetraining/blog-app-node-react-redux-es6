@@ -13,8 +13,8 @@ export function loadPosts(){
             .then(json => dispatch(loadPostSuccess(json)))
             .catch(error => {
                 throw(error);
-            })
-    }
+            });
+    };
 }
 
 
