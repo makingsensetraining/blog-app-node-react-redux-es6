@@ -3,8 +3,8 @@ import {Route, IndexRoute,Redirect } from 'react-router';
 import App from './components/App';
 import HomePage from './components/home/HomePage';
 import AboutPage from './components/about/AboutPage';
-import BlogPage from './components/blog/BlogPage';
-import ManagePostPage from './components/blog/ManagePostPage';
+import BlogPage from './components/blog-list/BlogPage';
+import ManagePostPage from './components/blog-form/ManagePostPage';
 import NotFound from './components/not_found/NotFound';
 
 export default (

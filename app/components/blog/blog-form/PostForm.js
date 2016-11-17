@@ -9,11 +9,11 @@ const PostForm = ({onChange, onSave, saving, errors}) => {
 
     if (errors && errors.type == 'title') {
         wrapperTitleClass = 'form-group has-error';
-        displayErrorsTitle = <div className="alert alert-danger">{errors.description}</div>
+        displayErrorsTitle = <div className="alert alert-danger">{errors.description}</div>;
     }
     if (errors && errors.type == 'content'){
         wrapperContentClass = 'form-group has-error';
-        displayErrorsContent = <div className="alert alert-danger">{errors.description}</div>
+        displayErrorsContent = <div className="alert alert-danger">{errors.description}</div>;
     }
 
     return (
@@ -28,7 +28,7 @@ const PostForm = ({onChange, onSave, saving, errors}) => {
                 />
                 {displayErrorsTitle}
             </div>
-            <div className='form-group'>
+            <div className="form-group">
                 <input
                     type="text"
                     className="form-control"
