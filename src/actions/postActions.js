@@ -1,5 +1,4 @@
 import * as types from './actionTypes';
-import blogAPI from '../api/mockBlogApi';
 import fetch from 'isomorphic-fetch';
 
 export function loadPostSuccess(posts){
@@ -8,11 +7,13 @@ export function loadPostSuccess(posts){
 
 export function loadPosts(){
     return dispatch => {
-        return blogAPI.getAllPosts().then(posts => {
-            dispatch(loadPostSuccess(posts));
-        }).catch(error => {
-            throw(error);
-        })
+
+        return fetch('/api/myPosts')
+            .then(response => response.json())
+            .then(json => dispatch(loadPostSuccess(json)))
+            .catch(error => {
+                throw(error);
+            })
     }
 }
 

@@ -13,10 +13,10 @@ const Header = () => {
                         <IndexLink to="/" activeClassName="active"><i className="glyphicon glyphicon-home"/> Home</IndexLink>
                     </li>
                     <li>
-                        <IndexLink to="blog" activeClassName="active"><i className="glyphicon glyphicon-th"/> Blog</IndexLink>
+                        <IndexLink to="/app/blog" activeClassName="active"><i className="glyphicon glyphicon-th"/> Blog</IndexLink>
                     </li>
                     <li>
-                        <Link to="/about" activeClassName="active"><i className="glyphicon glyphicon-exclamation-sign"/> About</Link>
+                        <Link to="/app/about" activeClassName="active"><i className="glyphicon glyphicon-exclamation-sign"/> About</Link>
                     </li>
                 </ul>
                 <div className="navbar-right">
