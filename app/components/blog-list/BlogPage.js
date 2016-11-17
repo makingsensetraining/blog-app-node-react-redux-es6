@@ -1,5 +1,6 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 import {bindActionCreators} from 'redux';
 import * as postActions from '../../actions/actionTypes';
 import PostInfo from './PostInfo';
@@ -15,9 +16,9 @@ class BlogPage extends React.Component {
             <div className="row">
                 <div className="col-md-6 col-md-offset-3">
                     <h2>My Posts</h2>
-                    <a href="#" className="btn btn-primary">
+                    <Link to="/app/post" className="btn btn-primary" activeClassName="active">
                         <i className="glyphicon glyphicon-plus" /> Write new post
-                    </a>
+                    </Link>
                     <PostInfo
                         posts={this.props.posts}/>
                     <br />

@@ -51,8 +51,11 @@
   "dependencies": {
     "babel-polyfill": "^6.16.0",
     "bootstrap": "^3.3.7",
+    "formsy-react": "^0.18.1",
+    "formsy-react-components": "^0.8.1",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.1",
+    "moment": "^2.16.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",

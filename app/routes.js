@@ -3,7 +3,8 @@ import {Route, IndexRoute,Redirect } from 'react-router';
 import App from './components/App';
 import HomePage from './components/home/HomePage';
 import AboutPage from './components/about/AboutPage';
-import BlogPage from './components/blog/BlogPage';
+import BlogPage from './components/blog-list/BlogPage';
+import ManagePostPage from './components/blog-form/ManagePostPage';
 import NotFound from './components/not_found/NotFound';
 
 export default (
@@ -11,8 +12,8 @@ export default (
         <IndexRoute component={HomePage}/>
         <Redirect from="/" to="/app" />
         <Route path="/app/blog" component={BlogPage}/>
+        <Route path="/app/post" component={ManagePostPage}/>
         <Route path="/app/about" component={AboutPage}/>
-        <Route path="*" component={NotFound} />
+        <Route path="*" component={NotFound}/>
     </Route>
-
 );

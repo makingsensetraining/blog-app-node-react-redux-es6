@@ -4,6 +4,7 @@ import webpack from 'webpack';
 import path from 'path';
 import config from '../webpack.config.dev';
 import open from 'open';
+import moment from 'moment';
 
 /* eslint-disable no-console */
 
@@ -22,17 +23,39 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+const posts = [
+    { id: 1, title: 'Post 1', content: 'Content of Post 1', author: 'Juan Cook - MKS', publishedDate: '2016-11-10' },
+    { id: 2, title: 'Post 2', content: 'Content of Post 2', author: 'Juan Cook - MKS', publishedDate: '2016-11-11' },
+    { id: 3, title: 'Post 3', content: 'Content of Post 3', author: 'Juan Cook - MKS', publishedDate: '2016-11-12' },
+    { id: 4, title: 'Post 4', content: 'Content of Post 4', author: 'Juan Cook - MKS', publishedDate: '2016-11-13' },
+    { id: 5, title: 'Post 5', content: 'Content of Post 5', author: 'Juan Cook - MKS', publishedDate: '2016-11-14' }
+];
+
+function generateNextId(posts) {
+    let lastId = 0;
+    posts.map(post => {
+        if (post.id > lastId) {
+            lastId = post.id;
+        }
+    });
+
+    return ++lastId;
+}
+
 // get all posts
-app.get('/api/myPosts', function (req, res) {
+app.get('/api/posts', function (req, res) {
+    res.send(posts);
+});
 
-        res.send([
-            { id: 1, title: 'Post 1', content: 'Content of Post 1', author: 'Juan Cook - MKS', publishedDate: '2016-11-10' },
-            { id: 2, title: 'Post 2', content: 'Content of Post 2', author: 'Juan Cook - MKS', publishedDate: '2016-11-11' },
-            { id: 3, title: 'Post 3', content: 'Content of Post 3', author: 'Juan Cook - MKS', publishedDate: '2016-11-12' },
-            { id: 4, title: 'Post 4', content: 'Content of Post 4', author: 'Juan Cook - MKS', publishedDate: '2016-11-13' },
-            { id: 5, title: 'Post 5', content: 'Content of Post 5', author: 'Juan Cook - MKS', publishedDate: '2016-11-14' }
-        ]);
+app.post('/api/posts', function(req, res){
+    var post = req.body.post;
 
+    post.id = generateNextId(posts);
+    post.publishedDate = moment().format('YYYY-MM-DD');
+
+    posts.push(post);
+
+    res.send(post);
 });
 
 app.get("/*", function (req, res) {
