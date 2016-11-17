@@ -11,7 +11,7 @@ const port = 3000;
 const app = express();
 const compiler = webpack(config);
 
-app.use(express.static(__dirname + '../src'));
+app.use(express.static(__dirname + '../app'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -36,7 +36,7 @@ app.get('/api/myPosts', function (req, res) {
 });
 
 app.get("/*", function (req, res) {
-     res.sendFile(path.join( __dirname, '../src/index.html'));
+     res.sendFile(path.join( __dirname, '../app/index.html'));
    })
    .listen(port, function(err) {
      if (err) return  console.log(err);
