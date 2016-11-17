@@ -10,7 +10,7 @@ export default {
     debug: true,
     devtool: 'source-map',
     noInfo: false, //List of bundling files
-    entry: './src/index',
+    entry: './app/index',
     target: 'web',
     output: {
         path: __dirname + '/dist', // Note: Physical files are only output by the production
@@ -29,7 +29,7 @@ export default {
     ],
     module: {
         loaders: [
-            {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel']},
+            {test: /\.js$/, include: path.join(__dirname, 'app'), loaders: ['babel']},
             {test: /(\.css)$/, loader: ExtractTextPlugin.extract("css?sourceMap")},
             {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
             {test: /\.(woff|woff2)$/, loader: 'url?prefix=font/&limit=5000'},
