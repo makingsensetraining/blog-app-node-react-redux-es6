@@ -37,6 +37,6 @@ export function createPost(post){
           .then(postSaved => dispatch(createPostSuccess(postSaved)))
           .catch(error => {
               throw(error);
-          })
+          });
     };
 }
