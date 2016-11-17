@@ -16,7 +16,7 @@ class BlogPage extends React.Component {
             <div className="row">
                 <div className="col-md-6 col-md-offset-3">
                     <h2>My Posts</h2>
-                    <Link to="post" className="btn btn-primary" activeClassName="active">
+                    <Link to="/app/post" className="btn btn-primary" activeClassName="active">
                         <i className="glyphicon glyphicon-plus" /> Write new post
                     </Link>
                     <PostInfo
