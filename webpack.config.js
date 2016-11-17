@@ -3,7 +3,6 @@ import path from 'path';
 
 export default {
     debug: true,
-    // devtool: 'cheap-module-eval-source-map',
     devtool: 'inline-source-map',
     noInfo: false, //List of bundling files
     entry: [

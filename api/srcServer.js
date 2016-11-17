@@ -2,7 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import webpack from 'webpack';
 import path from 'path';
-import config from '../webpack.config.dev';
+import config from '../webpack.config';
 import open from 'open';
 import moment from 'moment';
 
