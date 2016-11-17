@@ -32,7 +32,7 @@ class ManagePostPage extends React.Component {
     }
 
     redirectOnSave(){
-        this.context.router.push('/blog');
+        this.context.router.push('/app/blog');
     }
 
     render() {
