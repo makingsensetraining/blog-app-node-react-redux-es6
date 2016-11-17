@@ -10,30 +10,16 @@ class ManagePostPage extends React.Component {
         super(props, context);
 
         this.state = {
-            post: Object.assign({}, props.post),
-            errors: Object.assign({}, props.errors),
             saving: false
         };
 
         //Mapping events
-        this.handleUpdateState = this.handleUpdateState.bind(this);
         this.handleSavePost = this.handleSavePost.bind(this);
     }
 
-    handleUpdateState(event){
-        const field = event.target.name;
-        let post = this.state.post;
-        post[field] = event.target.value;
-        return this.setState({post: post});
-    }
-
-    handleSavePost(event){
-        event.preventDefault();
-
-        //Todo: clientSide Post validation?
-
+    handleSavePost(post){
         this.setState({ saving: true });
-        this.props.actions.createPost(this.state.post)
+        this.props.actions.createPost(post)
             .then(() => {
                 toastr.success('Post created successfully');
                 this.setState({ saving: false });
@@ -42,7 +28,6 @@ class ManagePostPage extends React.Component {
             .catch(error => {
                 toastr.error(error.description);
                 this.setState({ saving:false });
-                this.setState({ errors:error });
             });
     }
 
@@ -57,10 +42,8 @@ class ManagePostPage extends React.Component {
                     <h3>Compose a new Post</h3>
                     <hr />
                     <PostForm
-                        onChange={this.handleUpdateState}
                         onSave={this.handleSavePost}
                         saving={this.state.saving}
-                        errors={this.state.errors}
                     />
                 </div>
             </div>
@@ -69,9 +52,7 @@ class ManagePostPage extends React.Component {
 }
 
 ManagePostPage.propTypes = {
-    post: PropTypes.object.isRequired,
-    actions: PropTypes.object.isRequired,
-    errors: PropTypes.object
+    actions: PropTypes.object.isRequired
 };
 
 // Pull in the React Router context so router is available on this.context.router
@@ -80,18 +61,8 @@ ManagePostPage.contextTypes = {
 };
 
 function mapStatesToProps(state, ownProps) {
-
-    let post = {
-        id: 0,
-        title: '',
-        content: '',
-        author: '',
-        publishedDate: ''
-    };
-
     return {
-        state: state,
-        post: post
+        state: state
     };
 }
 
