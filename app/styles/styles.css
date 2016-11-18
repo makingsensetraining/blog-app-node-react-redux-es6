@@ -22,3 +22,8 @@
 .right {
     flex: 1;
 }
+
+.actions {
+    display: flex;
+    justify-content: space-between;
+}

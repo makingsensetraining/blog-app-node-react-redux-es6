@@ -12,6 +12,10 @@ export default function blogReducer(state = initialState.posts, action){
                 Object.assign({}, action.post),
             ];
 
+        case types.GET_POST_SUCCESS:
+            debugger;
+            return action.post;
+
         default:
             return state;
     }
