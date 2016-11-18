@@ -11,7 +11,6 @@ export function createPostSuccess(post){
 }
 
 export function getPostSuccess(post){
-    // debugger;
     return { type: types.GET_POST_SUCCESS, post };
 }
 
