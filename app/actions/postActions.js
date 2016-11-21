@@ -14,6 +14,10 @@ export function getPostSuccess(post){
     return { type: types.GET_POST_SUCCESS, post };
 }
 
+export function deletePostSuccess(postId){
+    return { type: types.DELETE_POST_SUCCESS, postId };
+}
+
 export function loadPosts(){
     return dispatch => {
 
@@ -53,6 +57,23 @@ export function getPost(id){
         return fetch(url)
             .then(response => response.json())
             .then(post => dispatch(getPostSuccess(post)))
+            .catch(error => {
+                throw(error);
+            });
+    };
+}
+
+export function deletePost(id){
+    return (dispatch, getState) => {
+        const url = endpoints.DELETE_POST + '/' + id;
+
+        return fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => response.json())
+            .then(resp => dispatch(deletePostSuccess(resp.postId)))
             .catch(error => {
                 throw(error);
             });
