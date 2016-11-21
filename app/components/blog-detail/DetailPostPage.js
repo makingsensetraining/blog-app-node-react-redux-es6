@@ -4,18 +4,34 @@ import {bindActionCreators} from 'redux';
 import * as postActions from '../../actions/postActions';
 import {Link} from 'react-router';
 import DetailPost from './DetailPost';
+import toastr from 'toastr';
 
 class DetailPostPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
         this.props.actions.getPost(this.props.postId); //Execute call to get the post object
+
+        this.handleDeletePost = this.handleDeletePost.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
         if (nextProps.post.error == 'Post not found'){ //Research if this is the best way to do this.
             this.context.router.push('/app/blog');
         }
+    }
+
+    handleDeletePost(){
+        const postId = this.props.post.id;
+        this.props.actions.deletePost(postId)
+            .then(() => {
+                toastr.success('Post removed');
+                //redirect
+                this.context.router.push('/app/blog');
+            })
+            .catch(error => {
+                toastr.error(error);
+            });
     }
 
     render() {
@@ -27,7 +43,7 @@ class DetailPostPage extends React.Component {
                     />
                     <div className="well well-sm actions">
                         <a href="#" className="btn btn-primary"><i className="glyphicon glyphicon-edit"/> Edit</a>
-                        <a href="#" className="btn btn-danger"><i className="glyphicon glyphicon-trash"/> Delete</a>
+                        <a onClick={this.handleDeletePost} className="btn btn-danger"><i className="glyphicon glyphicon-trash"/> Delete</a>
                         <Link to="/app/blog" className="btn btn-default"><i className="glyphicon glyphicon-chevron-left"/> Go Back</Link>
                     </div>
                 </div>

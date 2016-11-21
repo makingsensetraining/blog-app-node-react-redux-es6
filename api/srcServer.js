@@ -44,7 +44,7 @@ function generateNextId(posts) {
 
 // get all posts
 app.get('/api/posts', function (req, res) {
-    res.send(posts);
+    res.status(200).send(posts);
 });
 
 app.post('/api/posts', function(req, res){
@@ -55,18 +55,29 @@ app.post('/api/posts', function(req, res){
 
     posts.push(post);
 
-    res.send(post);
+    res.status(200).send(post);
 });
 
-app.get('/api/post/:id', function(req, res){
-    var postId = req.param('id');
+app.get('/api/posts/:id', function(req, res){
+    var postId = req.params.id;
     const post = posts.find(post => post.id == postId);
 
     if (post){
-        res.send(post);
+        res.status(200).send(post);
     } else {
-        res.send(404, {error: 'Post not found'});
+        res.status(404).send({error: 'Post not found'});
     }
+});
+
+app.delete('/api/posts/:id', function(req, res){
+    var postId = req.params.id;
+
+    const indexOfPostToDelete = posts.findIndex(post => { //We search for the post search index
+        return post.id == postId;
+    });
+    const postRemoved = posts.splice(indexOfPostToDelete, 1); //Remove from posts the searched post
+
+    res.status(200).send({postId: postRemoved[0].id});
 });
 
 app.get("/*", function (req, res) {

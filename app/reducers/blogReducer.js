@@ -12,6 +12,11 @@ export const posts = (state = initialState.posts, action) => {
                 Object.assign({}, action.post),
             ];
 
+        case types.DELETE_POST_SUCCESS:
+            return [
+                ...state.filter(post => post.id !== action.postId)
+            ];
+
         default:
             return state;
     }
