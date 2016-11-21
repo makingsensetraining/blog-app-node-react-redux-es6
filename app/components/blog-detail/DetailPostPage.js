@@ -42,7 +42,7 @@ class DetailPostPage extends React.Component {
                         post={this.props.post}
                     />
                     <div className="well well-sm actions">
-                        <a href="#" className="btn btn-primary"><i className="glyphicon glyphicon-edit"/> Edit</a>
+                        <Link to={`/app/post-edit/${this.props.post.id}`} className="btn btn-primary"><i className="glyphicon glyphicon-edit"/> Edit</Link>
                         <a onClick={this.handleDeletePost} className="btn btn-danger"><i className="glyphicon glyphicon-trash"/> Delete</a>
                         <Link to="/app/blog" className="btn btn-default"><i className="glyphicon glyphicon-chevron-left"/> Go Back</Link>
                     </div>

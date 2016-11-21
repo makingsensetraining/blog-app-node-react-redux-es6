@@ -14,6 +14,7 @@ export default (
         <Redirect from="/" to="/app" />
         <Route path="/app/blog" component={BlogPage}/>
         <Route path="/app/post-create" component={ManagePostPage}/>
+        <Route path="/app/post-edit/:id" component={ManagePostPage}/>
         <Route path="/app/post-detail/:id" component={DetailPostPage}/>
         <Route path="/app/about" component={AboutPage}/>
         <Route path="*" component={NotFound}/>
