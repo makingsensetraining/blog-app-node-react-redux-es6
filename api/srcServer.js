@@ -58,6 +58,17 @@ app.post('/api/posts', function(req, res){
     res.send(post);
 });
 
+app.get('/api/post/:id', function(req, res){
+    var postId = req.param('id');
+    const post = posts.find(post => post.id == postId);
+
+    if (post){
+        res.send(post);
+    } else {
+        res.send(404, {error: 'Post not found'});
+    }
+});
+
 app.get("/*", function (req, res) {
      res.sendFile(path.join( __dirname, '../app/index.html'));
    })

@@ -1,11 +1,12 @@
 import React, {PropTypes} from 'react';
+import {Link} from 'react-router';
 
 const PostListRow = ({id, title, content, author, publishedDate}) => {
     return (
         <li>
-            <div className="panel panel-default">
+            <div className="panel panel-info">
                 <div className="panel-heading">
-                    {title}
+                    <Link to={`/app/post-detail/${id}`}>{title}</Link>
                 </div>
                 <div className="panel-body">
                     <p>{content}</p>

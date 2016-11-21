@@ -10,6 +10,10 @@ export function createPostSuccess(post){
     return { type: types.CREATE_POST_SUCCESS, post };
 }
 
+export function getPostSuccess(post){
+    return { type: types.GET_POST_SUCCESS, post };
+}
+
 export function loadPosts(){
     return dispatch => {
 
@@ -38,5 +42,19 @@ export function createPost(post){
           .catch(error => {
               throw(error);
           });
+    };
+}
+
+
+export function getPost(id){
+    return (dispatch, getState) => {
+        const url = endpoints.GET_POST + '/' + id;
+
+        return fetch(url)
+            .then(response => response.json())
+            .then(post => dispatch(getPostSuccess(post)))
+            .catch(error => {
+                throw(error);
+            });
     };
 }
