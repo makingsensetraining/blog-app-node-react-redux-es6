@@ -22,16 +22,18 @@ class DetailPostPage extends React.Component {
     }
 
     handleDeletePost(){
-        const postId = this.props.post.id;
-        this.props.actions.deletePost(postId)
-            .then(() => {
-                toastr.success('Post removed');
-                //redirect
-                this.context.router.push('/app/blog');
-            })
-            .catch(error => {
-                toastr.error(error);
-            });
+        if (confirm('Do you want to delete the Post with title: ' + this.props.post.title)){
+            const postId = this.props.post.id;
+            this.props.actions.deletePost(postId)
+                .then(() => {
+                    toastr.success('Post removed');
+                    //redirect
+                    this.context.router.push('/app/blog');
+                })
+                .catch(error => {
+                    toastr.error(error);
+                });
+        }
     }
 
     render() {
