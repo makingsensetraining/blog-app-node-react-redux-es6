@@ -17,6 +17,14 @@ export const posts = (state = initialState.posts, action) => {
                 ...state.filter(post => post.id !== action.postId)
             ];
 
+        case types.UPDATE_POST_SUCCESS:
+            return [
+                ...state.filter(post => post.id !== action.post.id),
+                Object.assign({}, action.post)
+            ].sort((a, b) => { //After the array is with all the elements, we sort by postId alphabetically
+                return a.id - b.id;
+            });
+
         default:
             return state;
     }
