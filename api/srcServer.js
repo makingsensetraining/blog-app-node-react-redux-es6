@@ -80,6 +80,17 @@ app.delete('/api/posts/:id', function(req, res){
     res.status(200).send({postId: postRemoved[0].id});
 });
 
+app.put('/api/posts', function(req, res){
+    var updatedPost = req.body.post;
+
+    const indexOfPostToUpdate = posts.findIndex(post => { //We search for the post search index
+        return post.id == updatedPost.id;
+    });
+    posts.splice(indexOfPostToUpdate, 1, updatedPost); //Remove from posts the searched post
+
+    res.status(200).send(updatedPost);
+});
+
 app.get("/*", function (req, res) {
      res.sendFile(path.join( __dirname, '../app/index.html'));
    })
