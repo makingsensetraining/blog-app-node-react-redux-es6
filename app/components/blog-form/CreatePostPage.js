@@ -5,11 +5,12 @@ import * as postActions from '../../actions/postActions';
 import PostForm from './PostForm';
 import toastr from 'toastr';
 
-class ManagePostPage extends React.Component {
+class CreatePostPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
         this.state = {
+            post: Object.assign({}, props.post),
             saving: false
         };
 
@@ -44,6 +45,7 @@ class ManagePostPage extends React.Component {
                     <PostForm
                         onSave={this.handleSavePost}
                         saving={this.state.saving}
+                        post={this.state.post}
                     />
                 </div>
             </div>
@@ -51,18 +53,28 @@ class ManagePostPage extends React.Component {
     }
 }
 
-ManagePostPage.propTypes = {
-    actions: PropTypes.object.isRequired
+CreatePostPage.propTypes = {
+    actions: PropTypes.object.isRequired,
+    post: PropTypes.object
 };
 
 // Pull in the React Router context so router is available on this.context.router
-ManagePostPage.contextTypes = {
+CreatePostPage.contextTypes = {
     router: PropTypes.object
 };
 
 function mapStatesToProps(state, ownProps) {
+    let post = {
+        id: 0,
+        title: '',
+        author: '',
+        content: '',
+        publishedDate: ''
+    };
+
     return {
-        state: state
+        state: state,
+        post: post
     };
 }
 
@@ -72,4 +84,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStatesToProps, mapDispatchToProps)(ManagePostPage);
+export default connect(mapStatesToProps, mapDispatchToProps)(CreatePostPage);

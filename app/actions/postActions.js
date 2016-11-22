@@ -18,6 +18,10 @@ export function deletePostSuccess(postId){
     return { type: types.DELETE_POST_SUCCESS, postId };
 }
 
+export function updatePostSuccess(post){
+    return { type: types.UPDATE_POST_SUCCESS, post };
+}
+
 export function loadPosts(){
     return dispatch => {
 
@@ -46,6 +50,25 @@ export function createPost(post){
           .catch(error => {
               throw(error);
           });
+    };
+}
+
+export function updatePost(post){
+    return (dispatch, getState) => {
+
+        return fetch(endpoints.PUT_POST, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                post: post
+            })
+        }).then(response => response.json())
+            .then(postUpdated => dispatch(updatePostSuccess(postUpdated)))
+            .catch(error => {
+                throw(error);
+            });
     };
 }
 

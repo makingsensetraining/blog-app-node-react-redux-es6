@@ -24,11 +24,11 @@ app.use(require('webpack-dev-middleware')(compiler, {
 app.use(require('webpack-hot-middleware')(compiler));
 
 const posts = [
-    { id: 1, title: 'Post 1', content: 'Content of Post 1', author: 'Juan Cook - MKS', publishedDate: '2016-11-10' },
-    { id: 2, title: 'Post 2', content: 'Content of Post 2', author: 'Juan Cook - MKS', publishedDate: '2016-11-11' },
-    { id: 3, title: 'Post 3', content: 'Content of Post 3', author: 'Juan Cook - MKS', publishedDate: '2016-11-12' },
-    { id: 4, title: 'Post 4', content: 'Content of Post 4', author: 'Juan Cook - MKS', publishedDate: '2016-11-13' },
-    { id: 5, title: 'Post 5', content: 'Content of Post 5', author: 'Juan Cook - MKS', publishedDate: '2016-11-14' }
+    { id: 1, title: 'Post 1', content: 'Content of Post 1', author: 'Juan Cook MKS', publishedDate: '2016-11-10' },
+    { id: 2, title: 'Post 2', content: 'Content of Post 2', author: 'Juan Cook MKS', publishedDate: '2016-11-11' },
+    { id: 3, title: 'Post 3', content: 'Content of Post 3', author: 'Juan Cook MKS', publishedDate: '2016-11-12' },
+    { id: 4, title: 'Post 4', content: 'Content of Post 4', author: 'Juan Cook MKS', publishedDate: '2016-11-13' },
+    { id: 5, title: 'Post 5', content: 'Content of Post 5', author: 'Juan Cook MKS', publishedDate: '2016-11-14' }
 ];
 
 function generateNextId(posts) {
@@ -78,6 +78,17 @@ app.delete('/api/posts/:id', function(req, res){
     const postRemoved = posts.splice(indexOfPostToDelete, 1); //Remove from posts the searched post
 
     res.status(200).send({postId: postRemoved[0].id});
+});
+
+app.put('/api/posts', function(req, res){
+    var updatedPost = req.body.post;
+
+    const indexOfPostToUpdate = posts.findIndex(post => { //We search for the post search index
+        return post.id == updatedPost.id;
+    });
+    posts.splice(indexOfPostToUpdate, 1, updatedPost); //Remove from posts the searched post
+
+    res.status(200).send(updatedPost);
 });
 
 app.get("/*", function (req, res) {

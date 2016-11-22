@@ -45,7 +45,7 @@ class PostForm extends React.Component {
                         placeholder="Write the post title..."
                         validations="minLength:3"
                         validationError="The minimum length is 3 characters"
-                        value={this.getValue || ''}
+                        value={this.props.post.title || ''}
                         required />
                     <Input
                         formNoValidate
@@ -57,7 +57,7 @@ class PostForm extends React.Component {
                             isWords: 'Only letters allowed',
                             minLength: 'The minimum length is 3 characters'
                         }}
-                        value={this.getValue || ''}
+                        value={this.props.post.author || ''}
                         required />
                     <Textarea
                         formNoValidate
@@ -68,7 +68,7 @@ class PostForm extends React.Component {
                         placeholder="Write your post..."
                         validations="minLength:5"
                         validationError="The minimum length is 5 characters"
-                        value={this.getValue || ''}
+                        value={this.props.post.content || ''}
                         required
                     />
                     <div className="pull-right">
@@ -89,7 +89,8 @@ class PostForm extends React.Component {
 
 PostForm.propTypes = {
     onSave: PropTypes.func.isRequired,
-    saving: PropTypes.bool.isRequired
+    saving: PropTypes.bool.isRequired,
+    post: PropTypes.object.isRequired
 };
 
 export default PostForm;
