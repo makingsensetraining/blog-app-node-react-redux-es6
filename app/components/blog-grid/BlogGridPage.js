@@ -9,14 +9,20 @@ class BlogGridPage extends React.Component {
         super(props, context);
     }
 
+    componentWillReceiveProps(nextProps){
+        for (let post of nextProps.posts) {
+            post.link = `/app/post-detail/${post.id}`;
+        }
+    }
+
     render() {
         return (
             <div className="row">
-                <div className="col-md-6 col-md-offset-3">
+                <div className="col-md-8 col-md-offset-2">
                     <h2>My Posts - Grid</h2>
                     <BlogGrid
                         posts={this.props.posts}
-                        rowIndex={0}/>
+                    />
                 </div>
             </div>
         );
