@@ -56,6 +56,7 @@
     "fixed-data-table": "^0.6.3",
     "formsy-react": "^0.18.1",
     "formsy-react-components": "^0.8.1",
+    "griddle-react": "^0.7.0",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.1",
     "moment": "^2.16.0",

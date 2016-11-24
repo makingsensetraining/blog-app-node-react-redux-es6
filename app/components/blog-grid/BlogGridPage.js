@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as postActions from '../../actions/postActions';
 import BlogGrid from './BlogGrid';
+import BlogGriddle from './BlogGriddle';
 
 class BlogGridPage extends React.Component {
     constructor(props, context) {
@@ -20,7 +21,16 @@ class BlogGridPage extends React.Component {
             <div className="row">
                 <div className="col-md-8 col-md-offset-2">
                     <h2>My Posts - Grid</h2>
+                    <p className="text-muted">https://github.com/facebook/fixed-data-table</p>
                     <BlogGrid
+                        posts={this.props.posts}
+                    />
+
+                    <br />
+                    <br />
+                    <hr />
+                    <p className="text-muted">https://github.com/facebook/fixed-data-table</p>
+                    <BlogGriddle
                         posts={this.props.posts}
                     />
                 </div>
