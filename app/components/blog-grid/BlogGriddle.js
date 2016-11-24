@@ -1,9 +1,9 @@
 import React, {PropTypes} from 'react';
 import Griddle from  'griddle-react';
 
-const BlogGriddle = ({posts}) => {
+const BlogGriddle = ({posts, useGridStyles, showFilter}) => {
 
-    let exampleMetadata = [
+    let columnsMetaData = [
         { "columnName": "id", "displayName": "ID" },
         { "columnName": "title", "displayName": "Title" },
         { "columnName": "content", "displayName": "Content" },
@@ -13,19 +13,21 @@ const BlogGriddle = ({posts}) => {
 
     return (
         <Griddle
-            useGriddleStyles="false"
-            tableClassName="table table-striped"
-            showFilter="true"
+            useGriddleStyles={useGridStyles}
+            tableClassName="table table-striped table-hover"
+            showFilter={showFilter}
             results={posts}
             columns={["id", "title", "content", "author", "publishedDate"]}
-            columnMetadata={exampleMetadata}
+            columnMetadata={columnsMetaData}
             resultsPerPage="10"
         />
     );
 };
 
 BlogGriddle.propTypes = {
-    posts: PropTypes.array.isRequired
+    posts: PropTypes.array.isRequired,
+    useGridStyles: PropTypes.bool.isRequired,
+    showFilter: PropTypes.bool.isRequired
 };
 
 export default BlogGriddle;
