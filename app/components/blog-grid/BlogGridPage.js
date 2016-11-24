@@ -31,9 +31,11 @@ class BlogGridPage extends React.Component {
                     <hr />
                     <p className="text-muted">https://github.com/facebook/fixed-data-table</p>
                     <BlogGriddle
-                        posts={this.props.posts}
-                        useGridStyles={true}
+                        data={this.props.posts}
+                        useGridStyles={false}
                         showFilter={true}
+                        resultsPerPage={10}
+                        useCustomPagerComponent={true}
                     />
                 </div>
             </div>
