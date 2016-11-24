@@ -4,7 +4,6 @@ import webpack from 'webpack';
 import path from 'path';
 import config from '../webpack.config';
 import open from 'open';
-import moment from 'moment';
 
 /* eslint-disable no-console */
 
@@ -16,6 +15,7 @@ app.use(express.static(__dirname + '../app'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
   publicPath: config.output.publicPath
@@ -23,6 +23,18 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
+app.use(require('./blog/index.js'));
+
+app
+   .get("/*", (req, res) => {
+        res.sendFile(path.join( __dirname, '../app/index.html'));
+    })
+   .listen(port, (err) => {
+        if (err) return  console.log(err);
+        open(`http://localhost:${port}`);
+    });
+
+/*
 const posts = [];
 
 function generatePosts(max){
@@ -101,7 +113,7 @@ app.put('/api/posts', function(req, res){
 
     res.status(200).send(updatedPost);
 });
-
+*/
 app.get("/*", function (req, res) {
      res.sendFile(path.join( __dirname, '../app/index.html'));
    })
