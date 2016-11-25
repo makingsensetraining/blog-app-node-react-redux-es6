@@ -3,17 +3,33 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as postActions from '../../actions/postActions';
 import BlogGrid from './BlogGrid';
+import toastr from 'toastr';
 
 class BlogGridPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
         props.actions.loadPosts(); //Execute call to get the posts action
+
+        this.handleDeletePost = this.handleDeletePost.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
         for (let post of nextProps.posts) {
-            post.link = `/app/post-detail/${post.id}`;
+            post.linkDetail = `/app/post-detail/${post.id}`;
+            post.linkEdit = `/app/post-edit/${post.id}`;
+        }
+    }
+
+    handleDeletePost(post){
+        if (confirm('Do you want to delete the Post with title: ' + post.title)){
+            this.props.actions.deletePost(post.id)
+                .then(() => {
+                    toastr.success('Post removed');
+                })
+                .catch(error => {
+                    toastr.error(error);
+                });
         }
     }
 
@@ -28,6 +44,7 @@ class BlogGridPage extends React.Component {
                         showFilter={true}
                         resultsPerPage={10}
                         useCustomPagerComponent={true}
+                        deleteCallback={this.handleDeletePost}
                     />
                 </div>
             </div>

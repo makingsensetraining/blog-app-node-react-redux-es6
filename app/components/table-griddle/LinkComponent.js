@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 class LinkComponent extends React.Component {
     render() {
         const {rowData, data} = this.props;
-        let url = rowData.link;
+        let url = rowData.linkDetail;
         return (
             <Link to={url}>{data}</Link>
         );
