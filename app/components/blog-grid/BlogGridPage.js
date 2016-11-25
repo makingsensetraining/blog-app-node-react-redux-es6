@@ -7,6 +7,8 @@ import BlogGrid from './BlogGrid';
 class BlogGridPage extends React.Component {
     constructor(props, context) {
         super(props, context);
+
+        props.actions.loadPosts(); //Execute call to get the posts action
     }
 
     componentWillReceiveProps(nextProps){
