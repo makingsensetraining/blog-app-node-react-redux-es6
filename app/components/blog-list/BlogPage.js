@@ -2,13 +2,15 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 import {bindActionCreators} from 'redux';
-import * as postActions from '../../actions/actionTypes';
+import * as postActions from '../../actions/postActions';
 import PostInfo from './PostInfo';
 import PostList from './PostList';
 
 class BlogPage extends React.Component {
     constructor(props, context) {
         super(props, context);
+
+        props.actions.loadPosts(); //Execute call to get the posts action
     }
 
     render() {
