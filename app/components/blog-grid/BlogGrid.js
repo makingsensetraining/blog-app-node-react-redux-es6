@@ -49,7 +49,8 @@ BlogGrid.propTypes = {
     resultsPerPage: PropTypes.number,
     useGridStyles: PropTypes.bool,
     showFilter: PropTypes.bool,
-    useCustomPagerComponent: PropTypes.bool
+    useCustomPagerComponent: PropTypes.bool,
+    deleteCallback: PropTypes.func
 };
 
 export default BlogGrid;
