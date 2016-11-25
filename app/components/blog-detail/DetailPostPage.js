@@ -10,7 +10,7 @@ class DetailPostPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.props.actions.getPost(this.props.postId); //Execute call to get the post object
+        props.actions.getPost(this.props.postId); //Execute call to get the post object
 
         this.handleDeletePost = this.handleDeletePost.bind(this);
     }
