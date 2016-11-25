@@ -1,50 +1,46 @@
 import React, {PropTypes} from 'react';
-import {Table, Column, Cell} from 'fixed-data-table';
-import MyTextCell from '../table/MyTextCell';
-import MyLinkCell from '../table/MyLinkCell';
+import Griddle from  'griddle-react';
+import { BootstrapPager } from 'griddle-react-bootstrap';
+import LinkComponent from '../table-griddle/LinkComponent';
 
-const BlogGrid = ({posts}) => {
+const BlogGrid = ({data, resultsPerPage, useGridStyles, showFilter, useCustomPagerComponent}) => {
+
+    let columnsMetaData = [
+        { "columnName": "id", "displayName": "ID" },
+        { "columnName": "title", "displayName": "Title", "customComponent": LinkComponent },
+        { "columnName": "content", "displayName": "Content" },
+        { "columnName": "author", "displayName": "Author" },
+        { "columnName": "publishedDate", "displayName": "Date" }
+    ];
+
     return (
-        <Table
-            rowHeight={50}
-            rowsCount={posts.length}
-            width={800}
-            height={500}
-            headerHeight={50}>
-            <Column
-                header={<Cell>ID</Cell>}
-                cell={<MyTextCell data={posts} field="id" />}
-                width={50}
-                align="center"
-            />
-            <Column
-                header={<Cell>Title</Cell>}
-                cell={<MyLinkCell data={posts} field="title" link="link" />}
-                width={200}
-            />
-            <Column
-                header={<Cell>Content</Cell>}
-                cell={<MyTextCell data={posts} field="content" />}
-                width={250}
-            />
-            <Column
-                header={<Cell>Author</Cell>}
-                cell={<MyTextCell data={posts} field="author" />}
-                width={150}
-            />
-            <Column
-                header={<Cell>Published Date</Cell>}
-                cell={<MyTextCell data={posts} field="publishedDate" />}
-                width={150}
-                align="center"
-            />
-        </Table>
+        <Griddle
+            useGriddleStyles={useGridStyles}
+            tableClassName="table table-striped table-hover"
+            showFilter={showFilter}
+            results={data}
+            columns={["id", "title", "content", "author", "publishedDate"]}
+            columnMetadata={columnsMetaData}
+            resultsPerPage={resultsPerPage}
+            useCustomPagerComponent={useCustomPagerComponent}
+            customPagerComponent={BootstrapPager}
+        />
     );
 };
 
+BlogGrid.defaultTypes = {
+    resultsPerPage: 5,
+    useGridStyles: true,
+    showFilter: false,
+    useCustomPagerComponent: false
+};
+
 BlogGrid.propTypes = {
-    posts: PropTypes.array.isRequired,
-    rowIndex: PropTypes.number
+    data: PropTypes.array.isRequired,
+    resultsPerPage: PropTypes.number,
+    useGridStyles: PropTypes.bool,
+    showFilter: PropTypes.bool,
+    useCustomPagerComponent: PropTypes.bool
 };
 
 export default BlogGrid;

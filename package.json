@@ -53,7 +53,6 @@
     "babel-polyfill": "^6.16.0",
     "body-parser": "1.15.2",
     "bootstrap": "^3.3.7",
-    "fixed-data-table": "^0.6.3",
     "formsy-react": "^0.18.1",
     "formsy-react-components": "^0.8.1",
     "griddle-react": "^0.7.0",
