@@ -12,8 +12,8 @@ const BlogGrid = ({data, resultsPerPage, useGridStyles, showFilter, useCustomPag
         { "columnName": "content", "displayName": "Content" },
         { "columnName": "author", "displayName": "Author" },
         { "columnName": "publishedDate", "displayName": "Date" },
-        { "columnName":
-            "actions",
+        {
+            "columnName": "actions",
             "displayName": " ",
             "locked": "true",
             "cssClassName": "grid-actions-column",
