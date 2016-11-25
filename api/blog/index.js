@@ -9,5 +9,6 @@ router.get('/api/posts', controller.findAll);
 router.get('/api/posts/:id', controller.findById);
 router.post('/api/posts', controller.create);
 router.delete('/api/posts/:id', controller.delete);
+router.put('/api/posts', controller.update);
 
 module.exports = router;

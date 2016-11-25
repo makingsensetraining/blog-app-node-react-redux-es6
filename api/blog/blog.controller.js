@@ -21,6 +21,14 @@ class BlogController {
         });
     }
 
+    update(req, res, next) {
+        UserService.update(req.body.post, (err, post) =>  {
+            if (err) return next(err);
+
+            res.status(200).json(post);
+        });
+    }
+
     create(req, res, next) {
         UserService.create(req.body.post, (err, post) =>  {
             if (err) return next(err);

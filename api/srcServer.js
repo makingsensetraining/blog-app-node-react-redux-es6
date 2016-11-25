@@ -114,10 +114,3 @@ app.put('/api/posts', function(req, res){
     res.status(200).send(updatedPost);
 });
 */
-app.get("/*", function (req, res) {
-     res.sendFile(path.join( __dirname, '../app/index.html'));
-   })
-   .listen(port, function(err) {
-     if (err) return  console.log(err);
-     open(`http://localhost:${port}`);
-   });

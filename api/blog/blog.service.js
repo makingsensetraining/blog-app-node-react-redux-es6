@@ -3,11 +3,11 @@ import moment from "moment";
 
 
 const posts = [
-    { id: 1, title: 'Post 1', content: 'Content of Post 1', author: 'Juan Cook - MKS', publishedDate: '2016-11-10' },
-    { id: 2, title: 'Post 2', content: 'Content of Post 2', author: 'Juan Cook - MKS', publishedDate: '2016-11-11' },
-    { id: 3, title: 'Post 3', content: 'Content of Post 3', author: 'Juan Cook - MKS', publishedDate: '2016-11-12' },
-    { id: 4, title: 'Post 4', content: 'Content of Post 4', author: 'Juan Cook - MKS', publishedDate: '2016-11-13' },
-    { id: 5, title: 'Post 5', content: 'Content of Post 5', author: 'Juan Cook - MKS', publishedDate: '2016-11-14' }
+    { id: 1, title: 'Post 1', content: 'Content of Post 1', author: 'Juan Cook MKS', publishedDate: '2016-11-10' },
+    { id: 2, title: 'Post 2', content: 'Content of Post 2', author: 'Juan Cook MKS', publishedDate: '2016-11-11' },
+    { id: 3, title: 'Post 3', content: 'Content of Post 3', author: 'Juan Cook MKS', publishedDate: '2016-11-12' },
+    { id: 4, title: 'Post 4', content: 'Content of Post 4', author: 'Juan Cook MKS', publishedDate: '2016-11-13' },
+    { id: 5, title: 'Post 5', content: 'Content of Post 5', author: 'Juan Cook MKS', publishedDate: '2016-11-14' }
 ];
 
 var generateNextId;
@@ -36,8 +36,14 @@ class BlogService {
       return cb(post? null: {error: 'Post not found'},post)
   }
 
-  update(userId, changes, cb) {
+  update(post, cb) {
 
+      const indexOfPostToUpdate = posts.findIndex(foundPost => { //We search for the post search index
+          return foundPost.id == post.id;
+      });
+      posts.splice(indexOfPostToUpdate, 1, post); //Remove from posts the searched post
+
+      return cb(null,post)
   }
 
   create(post, cb) {
