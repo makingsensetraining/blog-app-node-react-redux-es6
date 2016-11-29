@@ -1,28 +1,20 @@
 import moment from "moment";
 'use-strict';
 
-
-const posts = [
-    { id: 1, title: 'Post 1', content: 'Content of Post 1', author: 'Juan Cook MKS', publishedDate: '2016-11-10' },
-    { id: 2, title: 'Post 2', content: 'Content of Post 2', author: 'Juan Cook MKS', publishedDate: '2016-11-11' },
-    { id: 3, title: 'Post 3', content: 'Content of Post 3', author: 'Juan Cook MKS', publishedDate: '2016-11-12' },
-    { id: 4, title: 'Post 4', content: 'Content of Post 4', author: 'Juan Cook MKS', publishedDate: '2016-11-13' },
-    { id: 5, title: 'Post 5', content: 'Content of Post 5', author: 'Juan Cook MKS', publishedDate: '2016-11-14' }
-];
-
-var generateNextId;
-
+const posts = [];
 
 class BlogService {
     constructor() {
-        generateNextId = (posts) => {
-            let lastId = 0;
-            posts.map(post => {
-                if (post.id > lastId) {
-                    lastId = post.id;
-                }
+        let nextId = 0;
+        while(nextId < 100){
+            posts.push( {
+                id: nextId++,
+                title: 'Post ' + nextId,
+                content: 'Content of Post ' + nextId,
+                author: 'Juan Cook MKS',
+                publishedDate: '2016-11-10'
             });
-        };
+        }
     }
 
   findAll(cb) {
