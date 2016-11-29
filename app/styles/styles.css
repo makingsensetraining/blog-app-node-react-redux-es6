@@ -27,3 +27,8 @@
     display: flex;
     justify-content: space-between;
 }
+
+
+.grid-actions-column {
+    width: 70px;
+}

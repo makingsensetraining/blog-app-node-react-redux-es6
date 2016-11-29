@@ -23,13 +23,24 @@ app.use(require('webpack-dev-middleware')(compiler, {
 
 app.use(require('webpack-hot-middleware')(compiler));
 
-const posts = [
-    { id: 1, title: 'Post 1', content: 'Content of Post 1', author: 'Juan Cook MKS', publishedDate: '2016-11-10' },
-    { id: 2, title: 'Post 2', content: 'Content of Post 2', author: 'Juan Cook MKS', publishedDate: '2016-11-11' },
-    { id: 3, title: 'Post 3', content: 'Content of Post 3', author: 'Juan Cook MKS', publishedDate: '2016-11-12' },
-    { id: 4, title: 'Post 4', content: 'Content of Post 4', author: 'Juan Cook MKS', publishedDate: '2016-11-13' },
-    { id: 5, title: 'Post 5', content: 'Content of Post 5', author: 'Juan Cook MKS', publishedDate: '2016-11-14' }
-];
+const posts = [];
+
+function generatePosts(max){
+    for(let i=0; i < max; i++ ){
+        const nextId = i + 1;
+        let post = {
+            id: nextId,
+            title: 'Post ' + nextId,
+            content: 'Content of Post ' + nextId,
+            author: 'Juan Cook MKS',
+            publishedDate: '2016-11-10'
+        };
+
+        posts.push(post);
+    }
+}
+
+generatePosts(100);
 
 function generateNextId(posts) {
     let lastId = 0;

@@ -13,6 +13,7 @@ class DetailPostPage extends React.Component {
         props.actions.getPost(this.props.postId); //Execute call to get the post object
 
         this.handleDeletePost = this.handleDeletePost.bind(this);
+        this.goBack = this.goBack.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
@@ -28,12 +29,16 @@ class DetailPostPage extends React.Component {
                 .then(() => {
                     toastr.success('Post removed');
                     //redirect
-                    this.context.router.push('/app/blog');
+                    this.context.router.goBack();
                 })
                 .catch(error => {
                     toastr.error(error);
                 });
         }
+    }
+
+    goBack(){
+        this.context.router.goBack();
     }
 
     render() {
@@ -46,7 +51,7 @@ class DetailPostPage extends React.Component {
                     <div className="well well-sm actions">
                         <Link to={`/app/post-edit/${this.props.post.id}`} className="btn btn-primary"><i className="glyphicon glyphicon-edit"/> Edit</Link>
                         <a onClick={this.handleDeletePost} className="btn btn-danger"><i className="glyphicon glyphicon-trash"/> Delete</a>
-                        <Link to="/app/blog" className="btn btn-default"><i className="glyphicon glyphicon-chevron-left"/> Go Back</Link>
+                        <a onClick={this.goBack} className="btn btn-default"><i className="glyphicon glyphicon-chevron-left"/> Go Back</a>
                     </div>
                 </div>
             </div>
