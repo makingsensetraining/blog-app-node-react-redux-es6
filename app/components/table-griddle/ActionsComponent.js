@@ -2,6 +2,15 @@ import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 
 class ActionsComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.handleOnClick = this.handleOnClick.bind(this);
+    }
+
+    handleOnClick(){
+        this.props.metadata.deleteCallback(this.props.rowData);
+    }
 
     render() {
         const {rowData} = this.props;
@@ -14,7 +23,7 @@ class ActionsComponent extends React.Component {
                 </Link>
                 &nbsp;
                 &nbsp;
-                <a href="#" onClick={this.props.metadata.deleteCallback.bind(null, this.props.rowData)}>
+                <a href="#" onClick={this.handleOnClick}>
                     <i className="glyphicon glyphicon-trash"/>
                 </a>
             </div>
@@ -23,7 +32,8 @@ class ActionsComponent extends React.Component {
 }
 
 ActionsComponent.propTypes = {
-    rowData: PropTypes.object.isRequired
+    rowData: PropTypes.object.isRequired,
+    metadata: PropTypes.object.isRequired
 };
 
 export default ActionsComponent;
