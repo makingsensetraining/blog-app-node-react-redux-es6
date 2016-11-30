@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import * as postActions from '../../actions/postActions';
 import BlogGrid from './BlogGrid';
 import toastr from 'toastr';
+import ConfirmModal from '../common/ConfirmModal';
 
 class BlogGridPage extends React.Component {
     constructor(props, context) {
@@ -12,6 +13,7 @@ class BlogGridPage extends React.Component {
         props.actions.loadPosts(); //Execute call to get the posts action
 
         this.handleDeletePost = this.handleDeletePost.bind(this);
+        this.openConfirmModal = this.openConfirmModal.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
@@ -21,16 +23,23 @@ class BlogGridPage extends React.Component {
         }
     }
 
-    handleDeletePost(post){
-        if (confirm('Do you want to delete the Post with title: ' + post.title)){
-            this.props.actions.deletePost(post.id)
-                .then(() => {
-                    toastr.success('Post removed');
-                })
-                .catch(error => {
-                    toastr.error(error);
-                });
-        }
+    handleDeletePost(){
+        this.props.actions.deletePost(this.state.postToDelete.id)
+            .then(() => {
+                toastr.success('Post removed');
+            })
+            .catch(error => {
+                toastr.error(error);
+            });
+
+    }
+
+    openConfirmModal(post){
+        this.setState({
+            postToDelete: post
+        });
+
+        this.modal.open();
     }
 
     render() {
@@ -44,7 +53,14 @@ class BlogGridPage extends React.Component {
                         showFilter={true}
                         resultsPerPage={10}
                         useCustomPagerComponent={true}
-                        deleteCallback={this.handleDeletePost}
+                        deleteCallback={this.openConfirmModal}
+                    />
+
+                    <ConfirmModal
+                        title="Post delete"
+                        body="Are you sure you want to delete this post?"
+                        ref={(child) => { this.modal = child; }}
+                        confirm={this.handleDeletePost}
                     />
                 </div>
             </div>

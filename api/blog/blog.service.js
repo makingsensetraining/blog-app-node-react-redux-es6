@@ -1,19 +1,21 @@
+'use strict';
+
 import moment from "moment";
-'use-strict';
 
 const posts = [];
 
 class BlogService {
     constructor() {
-        let nextId = 0;
-        while(nextId < 100){
+        let nextId = 1;
+        while(nextId <= 100){
             posts.push( {
-                id: nextId++,
+                id: nextId,
                 title: 'Post ' + nextId,
                 content: 'Content of Post ' + nextId,
                 author: 'Juan Cook MKS',
                 publishedDate: '2016-11-10'
             });
+            nextId++;
         }
     }
 
