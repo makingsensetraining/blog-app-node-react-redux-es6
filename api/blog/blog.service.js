@@ -7,8 +7,8 @@ const posts = [];
 class BlogService {
     constructor() {
         let nextId = 1;
-        while(nextId <= 100){
-            posts.push( {
+        while (nextId <= 100) {
+            posts.push({
                 id: nextId,
                 title: 'Post ' + nextId,
                 content: 'Content of Post ' + nextId,
@@ -19,47 +19,57 @@ class BlogService {
         }
     }
 
-  findAll(cb) {
-      return cb(null,posts)
-  }
+    generateNextId() {
+        let lastId = 0;
+        posts.map(post => {
+            if (post.id > lastId) {
+                lastId = post.id;
+            }
+        });
+        return ++lastId;
+    }
 
-  findById(id, cb) {
+    findAll(cb) {
+        return cb(null, posts)
+    }
 
-      const post = posts.find(post => post.id == id);
+    findById(id, cb) {
 
-      return cb(post? null: {error: 'Post not found'},post)
-  }
+        const post = posts.find(post => post.id == id);
 
-  update(post, cb) {
+        return cb(post ? null : {error: 'Post not found'}, post)
+    }
 
-      const indexOfPostToUpdate = posts.findIndex(foundPost => { //We search for the post search index
-          return foundPost.id == post.id;
-      });
-      posts.splice(indexOfPostToUpdate, 1, post); //Remove from posts the searched post
+    update(post, cb) {
 
-      return cb(null,post)
-  }
+        const indexOfPostToUpdate = posts.findIndex(foundPost => { //We search for the post search index
+            return foundPost.id == post.id;
+        });
+        posts.splice(indexOfPostToUpdate, 1, post); //Remove from posts the searched post
 
-  create(post, cb) {
-      post.id = generateNextId(posts);
-      post.publishedDate = moment().format('YYYY-MM-DD');
-      posts.push(post);
+        return cb(null, post)
+    }
 
-      cb(null, post);
-  }
+    create(post, cb) {
+        post.id = this.generateNextId();
+        post.publishedDate = moment().format('YYYY-MM-DD');
+        posts.push(post);
 
-  delete(id, cb) {
+        cb(null, post);
+    }
 
-      const indexOfPostToDelete = posts.findIndex(post => { //We search for the post search index
-          return post.id == id;
-      });
+    delete(id, cb) {
 
-      const postRemoved = posts[indexOfPostToDelete]; //Get the object to be deleted.
+        const indexOfPostToDelete = posts.findIndex(post => { //We search for the post search index
+            return post.id == id;
+        });
 
-      posts.splice(indexOfPostToDelete, 1); //Remove from posts the searched post
+        const postRemoved = posts[indexOfPostToDelete]; //Get the object to be deleted.
 
-      cb(null, postRemoved);
-  }
+        posts.splice(indexOfPostToDelete, 1); //Remove from posts the searched post
+
+        cb(null, postRemoved);
+    }
 }
 
 export default new BlogService();
