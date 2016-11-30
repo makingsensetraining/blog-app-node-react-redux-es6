@@ -7,14 +7,14 @@ class BlogController {
 
     findAll(req, res, next) {
         UserService.findAll((err, posts) => {
-          if (err) return next(err);
+            if (err) return next(err);
 
-          res.status(200).json(posts);
+            res.status(200).json(posts);
         });
     }
 
     findById(req, res, next) {
-        UserService.findById(req.params.id, (err, post) =>  {
+        UserService.findById(req.params.id, (err, post) => {
             if (err) return next(err);
 
             res.status(200).json(post);
@@ -22,7 +22,7 @@ class BlogController {
     }
 
     update(req, res, next) {
-        UserService.update(req.body.post, (err, post) =>  {
+        UserService.update(req.body.post, (err, post) => {
             if (err) return next(err);
 
             res.status(200).json(post);
@@ -30,15 +30,15 @@ class BlogController {
     }
 
     create(req, res, next) {
-        UserService.create(req.body.post, (err, post) =>  {
+        UserService.create(req.body.post, (err, post) => {
             if (err) return next(err);
 
             res.status(200).json(post);
         });
     }
 
-    delete(req, res, next){
-        UserService.delete(req.params.id, (err, postDeleted) =>  {
+    delete(req, res, next) {
+        UserService.delete(req.params.id, (err, postDeleted) => {
             if (err) return next(err);
 
             res.status(200).json(postDeleted);
@@ -48,4 +48,4 @@ class BlogController {
 
 }
 
-export default  new BlogController();
+export default new BlogController();
