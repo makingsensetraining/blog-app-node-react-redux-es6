@@ -53,7 +53,10 @@ class BlogService {
       const indexOfPostToDelete = posts.findIndex(post => { //We search for the post search index
           return post.id == id;
       });
-      const postRemoved = posts.splice(indexOfPostToDelete, 1); //Remove from posts the searched post
+
+      const postRemoved = posts[indexOfPostToDelete]; //Get the object to be deleted.
+
+      posts.splice(indexOfPostToDelete, 1); //Remove from posts the searched post
 
       cb(null, postRemoved);
   }

@@ -96,7 +96,7 @@ export function deletePost(id){
                 'Content-Type': 'application/json'
             }
         }).then(response => response.json())
-            .then(resp => dispatch(deletePostSuccess(resp.postId)))
+            .then(post => dispatch(deletePostSuccess(post.id)))
             .catch(error => {
                 throw(error);
             });
