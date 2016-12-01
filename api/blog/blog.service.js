@@ -29,8 +29,14 @@ class BlogService {
         return ++lastId;
     }
 
-    findAll(cb) {
-        return cb(null, posts)
+    findAll(page, limit, cb) {
+        console.log(limit);
+        let paginatedPosts = posts.slice(page*limit - limit, (page*limit));
+        let responseData = {
+            count: posts.length,
+            posts: paginatedPosts
+        };
+        return cb(null, responseData)
     }
 
     findById(id, cb) {
