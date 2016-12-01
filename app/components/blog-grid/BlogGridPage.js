@@ -1,16 +1,16 @@
 import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as postActions from '../../actions/postActions';
-import BlogGrid from './BlogGrid';
 import toastr from 'toastr';
+import {Link} from 'react-router';
+import * as postActions from '../../actions/postActions';
+import BlogGridExternal from './BlogGridExternal';
+
 import ConfirmModal from '../common/ConfirmModal';
 
 class BlogGridPage extends React.Component {
     constructor(props, context) {
         super(props, context);
-
-        props.actions.loadPosts(); //Execute call to get the posts action
 
         this.handleDeletePost = this.handleDeletePost.bind(this);
         this.openConfirmModal = this.openConfirmModal.bind(this);
@@ -47,8 +47,12 @@ class BlogGridPage extends React.Component {
             <div className="row">
                 <div className="col-md-8 col-md-offset-2">
                     <h2>My Posts - Grid</h2>
-                    <BlogGrid
-                        data={this.props.posts}
+                    <Link to="/app/post-create" className="btn btn-primary" activeClassName="active">
+                        <i className="glyphicon glyphicon-plus" /> Write new post
+                    </Link>
+                    <br />
+
+                    <BlogGridExternal
                         useGridStyles={false}
                         showFilter={true}
                         resultsPerPage={10}
@@ -82,7 +86,8 @@ BlogGridPage.propTypes = {
 function mapStatesToProps(state, ownProps) {
     return {
         state: state,
-        posts: state.posts
+        posts: state.posts,
+        count: state.count
     };
 }
 

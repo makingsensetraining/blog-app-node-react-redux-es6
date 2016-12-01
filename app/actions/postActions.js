@@ -25,7 +25,7 @@ export function updatePostSuccess(post){
 export function loadPosts(page){
     return dispatch => {
 
-        return fetch(endpoints.GET_POSTS + '/?page=' + page)
+        return fetch(endpoints.GET_POSTS + `/?page=${page}`)
             .then(response => response.json())
             .then(response => dispatch(loadPostSuccess(response.count, response.posts)))
             .catch(error => {
@@ -75,7 +75,7 @@ export function updatePost(post){
 
 export function getPost(id){
     return (dispatch, getState) => {
-        const url = endpoints.GET_POST + '/' + id;
+        const url = endpoints.GET_POST + `/${id}`;
 
         return fetch(url)
             .then(response => response.json())
@@ -88,7 +88,7 @@ export function getPost(id){
 
 export function deletePost(id){
     return (dispatch, getState) => {
-        const url = endpoints.DELETE_POST + '/' + id;
+        const url = endpoints.DELETE_POST + `/${id}`;
 
         return fetch(url, {
             method: 'DELETE',

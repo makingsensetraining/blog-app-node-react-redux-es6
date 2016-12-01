@@ -33,7 +33,7 @@ class CreatePostPage extends React.Component {
     }
 
     redirectOnSave(){
-        this.context.router.push('/app/blog');
+        this.context.router.goBack();
     }
 
     render() {

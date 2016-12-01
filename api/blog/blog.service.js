@@ -30,7 +30,6 @@ class BlogService {
     }
 
     findAll(page, limit, cb) {
-        console.log(limit);
         let paginatedPosts = posts.slice(page*limit - limit, (page*limit));
         let responseData = {
             count: posts.length,
