@@ -22,10 +22,10 @@ export function updatePostSuccess(post){
     return { type: types.UPDATE_POST_SUCCESS, post };
 }
 
-export function loadPosts(page){
+export function loadPosts(page, filter){
     return dispatch => {
 
-        return fetch(endpoints.GET_POSTS + `/?page=${page}`)
+        return fetch(endpoints.GET_POSTS + `/?page=${page}&filter=${filter}`)
             .then(response => response.json())
             .then(response => dispatch(loadPostSuccess(response.count, response.posts)))
             .catch(error => {

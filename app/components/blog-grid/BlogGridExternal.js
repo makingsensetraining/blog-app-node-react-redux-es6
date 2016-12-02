@@ -15,6 +15,7 @@ class BlogGridExternal extends React.Component {
             results: [],
             currentPage: 0,
             maxPages: 0,
+            currentFilter: '',
             externalResultsPerPage: props.resultsPerPage,
             externalSortColumn: null,
             externalSortAscending: true,
@@ -72,7 +73,11 @@ class BlogGridExternal extends React.Component {
 
     //this method handles the filtering of the data
     setFilter(filter){
-        //ToDo: missing implementation
+        this.setState({
+            currentFilter: filter
+        });
+
+        this.getExternalData(this.state.currentPage, filter);
     }
 
     //this method handles determining the page size
@@ -80,10 +85,14 @@ class BlogGridExternal extends React.Component {
         //ToDo: missing implementation
     }
 
-    getExternalData(page){
-        page = page||1;
+    getExternalData(page, filter){
+        page = page || 1;
 
-        this.props.actions.loadPosts(page)
+        if (filter == undefined){
+            filter = this.state.currentFilter;
+        }
+
+        this.props.actions.loadPosts(page, filter)
             .then(() => {
                 this.setState({
                     currentPage: page-1
