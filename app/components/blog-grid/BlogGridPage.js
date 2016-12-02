@@ -51,6 +51,7 @@ class BlogGridPage extends React.Component {
                         <i className="glyphicon glyphicon-plus" /> Write new post
                     </Link>
                     <br />
+                    <hr />
 
                     <BlogGridExternal
                         useGridStyles={false}
