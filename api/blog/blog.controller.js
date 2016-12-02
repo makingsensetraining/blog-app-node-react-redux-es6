@@ -7,12 +7,16 @@ class BlogController {
 
     findAll(req, res, next) {
         let page = req.query.page;
+        let filter = req.query.filter;
         let limit = req.query.limit || 10;
         if (page == 'undefined'){
             page = 1;
         }
+        if (filter == 'undefined' || filter == ''){
+            filter = false;
+        }
 
-        UserService.findAll(page, limit, (err, response) => {
+        UserService.findAll(page, limit, filter, (err, response) => {
             if (err) return next(err);
 
             res.status(200).json(response);

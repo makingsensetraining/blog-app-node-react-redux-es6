@@ -29,10 +29,16 @@ class BlogService {
         return ++lastId;
     }
 
-    findAll(page, limit, cb) {
-        let paginatedPosts = posts.slice(page*limit - limit, (page*limit));
+    findAll(page, limit, filter, cb) {
+        let returnPosts = posts;
+
+        if (filter) {
+            returnPosts = returnPosts.filter(post => post.title.startsWith(filter));
+        }
+
+        let paginatedPosts = returnPosts.slice(page*limit - limit, (page*limit));
         let responseData = {
-            count: posts.length,
+            count: returnPosts.length,
             posts: paginatedPosts
         };
         return cb(null, responseData)
