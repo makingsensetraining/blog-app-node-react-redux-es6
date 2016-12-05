@@ -13,10 +13,7 @@ const Header = () => {
                         <IndexLink to="/" activeClassName="active"><i className="glyphicon glyphicon-home"/> Home</IndexLink>
                     </li>
                     <li>
-                        <IndexLink to="/app/blog" activeClassName="active"><i className="glyphicon glyphicon-th"/> Blog</IndexLink>
-                    </li>
-                    <li>
-                        <IndexLink to="/app/blog-grid" activeClassName="active"><i className="glyphicon glyphicon-list"/> Blog Grid</IndexLink>
+                        <IndexLink to="/app/blog-grid" activeClassName="active"><i className="glyphicon glyphicon-list"/> Blog</IndexLink>
                     </li>
                     <li>
                         <Link to="/app/about" activeClassName="active"><i className="glyphicon glyphicon-exclamation-sign"/> About</Link>
