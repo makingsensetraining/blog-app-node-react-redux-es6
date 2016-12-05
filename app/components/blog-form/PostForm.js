@@ -79,7 +79,7 @@ class PostForm extends React.Component {
                                 value={this.props.saving ? 'Saving... ' : 'Save'}
                         />
                         &nbsp;
-                        <Link to="/app/blog" className="btn btn-default">Cancel</Link>
+                        <Link to="/app/blog-grid" className="btn btn-default">Cancel</Link>
                     </div>
                 </Formsy.Form>
             </div>

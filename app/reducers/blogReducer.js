@@ -40,3 +40,13 @@ export const post = (state = initialState.post, action) => {
     }
 };
 
+export const count = (state = initialState.count, action) => {
+    switch (action.type){
+        case types.LOAD_POST_SUCCESS:
+            return action.count;
+
+        default:
+            return state;
+    }
+};
+

@@ -14,7 +14,7 @@ import '../node_modules/toastr/build/toastr.min.css';
 import '../node_modules/griddle-react-bootstrap/dist/griddle-react-bootstrap.css';
 
 const store = configureStore();
-store.dispatch(loadPosts());
+// store.dispatch(loadPosts());
 
 render (
     <Provider store={store}>

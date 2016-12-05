@@ -18,7 +18,7 @@ class DetailPostPage extends React.Component {
 
     componentWillReceiveProps(nextProps){
         if (nextProps.post.error == 'Post not found'){ //Research if this is the best way to do this.
-            this.context.router.push('/app/blog');
+            this.context.router.push('/app/blog-grid');
         }
     }
 

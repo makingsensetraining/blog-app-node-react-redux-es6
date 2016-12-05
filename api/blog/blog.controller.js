@@ -6,10 +6,22 @@ import UserService from './blog.service';
 class BlogController {
 
     findAll(req, res, next) {
-        UserService.findAll((err, posts) => {
+        let page = req.query.page;
+        let filter = req.query.filter;
+        let limit = req.query.limit || 10;
+        let sort = req.query.sort || 'id';
+        let sortDirection = req.query.sortDir || 'asc';
+        if (page == 'undefined'){
+            page = 1;
+        }
+        if (filter == 'undefined' || filter == ''){
+            filter = false;
+        }
+
+        UserService.findAll(page, limit, filter, sort, sortDirection, (err, response) => {
             if (err) return next(err);
 
-            res.status(200).json(posts);
+            res.status(200).json(response);
         });
     }
 

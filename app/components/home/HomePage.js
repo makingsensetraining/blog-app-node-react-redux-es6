@@ -18,7 +18,7 @@ class HomePage extends React.Component {
             <div className="jumbotron">
                 <h1>Blog App</h1>
                 <p>Node, React, Redux and React Router in ES6 for ultra-respositve webapps.</p>
-                <Link to="/app/blog" className="btn btn-primary btn-lg">Check the latests posts</Link>
+                <Link to="/app/blog-grid" className="btn btn-primary btn-lg">Check the latests posts</Link>
 
                 &nbsp;
                 <a href="#" className="btn btn-info btn-lg pull-right" onClick={this.openModal}>Info</a>

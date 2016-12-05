@@ -2,8 +2,8 @@ import * as types from './actionTypes';
 import * as endpoints from './apiEndpoints';
 import fetch from 'isomorphic-fetch';
 
-export function loadPostSuccess(posts){
-    return { type: types.LOAD_POST_SUCCESS, posts };
+export function loadPostSuccess(count, posts){
+    return { type: types.LOAD_POST_SUCCESS, count, posts };
 }
 
 export function createPostSuccess(post){
@@ -22,12 +22,12 @@ export function updatePostSuccess(post){
     return { type: types.UPDATE_POST_SUCCESS, post };
 }
 
-export function loadPosts(){
+export function loadPosts(page, filter, sort, sortDir){
     return dispatch => {
 
-        return fetch(endpoints.GET_POSTS)
+        return fetch(endpoints.GET_POSTS + `/?page=${page}&filter=${filter}&sort=${sort}&sortDir=${sortDir}`)
             .then(response => response.json())
-            .then(posts => dispatch(loadPostSuccess(posts)))
+            .then(response => dispatch(loadPostSuccess(response.count, response.posts)))
             .catch(error => {
                 throw(error);
             });
@@ -75,7 +75,7 @@ export function updatePost(post){
 
 export function getPost(id){
     return (dispatch, getState) => {
-        const url = endpoints.GET_POST + '/' + id;
+        const url = endpoints.GET_POST + `/${id}`;
 
         return fetch(url)
             .then(response => response.json())
@@ -88,7 +88,7 @@ export function getPost(id){
 
 export function deletePost(id){
     return (dispatch, getState) => {
-        const url = endpoints.DELETE_POST + '/' + id;
+        const url = endpoints.DELETE_POST + `/${id}`;
 
         return fetch(url, {
             method: 'DELETE',
