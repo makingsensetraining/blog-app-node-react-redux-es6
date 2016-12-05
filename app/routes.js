@@ -4,7 +4,6 @@ import App from './components/App';
 import HomePage from './components/home/HomePage';
 import AboutPage from './components/about/AboutPage';
 import BlogPage from './components/blog-list/BlogPage';
-import BlogGridPage from './components/blog-grid/BlogGridPage';
 import DetailPostPage from './components/blog-detail/DetailPostPage';
 import CreatePostPage from './components/blog-form/CreatePostPage';
 import EditPostPage from './components/blog-form/EditPostPage';
@@ -15,7 +14,6 @@ export default (
         <IndexRoute component={HomePage}/>
         <Redirect from="/" to="/app" />
         <Route path="/app/blog" component={BlogPage}/>
-        <Route path="/app/blog-grid" component={BlogGridPage}/>
         <Route path="/app/post-create" component={CreatePostPage}/>
         <Route path="/app/post-edit/:id" component={EditPostPage}/>
         <Route path="/app/post-detail/:id" component={DetailPostPage}/>

@@ -16,9 +16,6 @@ const Header = () => {
                         <IndexLink to="/app/blog" activeClassName="active"><i className="glyphicon glyphicon-th"/> Blog</IndexLink>
                     </li>
                     <li>
-                        <IndexLink to="/app/blog-grid" activeClassName="active"><i className="glyphicon glyphicon-list"/> Blog Grid</IndexLink>
-                    </li>
-                    <li>
                         <Link to="/app/about" activeClassName="active"><i className="glyphicon glyphicon-exclamation-sign"/> About</Link>
                     </li>
                 </ul>
