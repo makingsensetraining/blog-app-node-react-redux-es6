@@ -29,13 +29,61 @@ class BlogService {
         return ++lastId;
     }
 
-    findAll(page, limit, filter, cb) {
+    findAll(page, limit, filter, sort, sortDir, cb) {
         let returnPosts = posts;
 
+        //Filtering
         if (filter) {
             returnPosts = returnPosts.filter(post => post.title.startsWith(filter));
         }
 
+        //Sorting
+        if (sort && sortDir){
+            switch (sort){
+                default:
+                case 'id': {
+                    if (sortDir == 'asc'){
+                        returnPosts = returnPosts.sort((a, b) => { //After the array is with all the elements, we sort by postId alphabetically
+                            return a.id - b.id;
+                        })
+                    } else {
+                        returnPosts = returnPosts.sort((a, b) => { //After the array is with all the elements, we sort by postId alphabetically
+                            return b.id - a.id;
+                        })
+                    }
+                    break;
+                }
+
+                case 'title': {
+                    if (sortDir == 'asc'){
+                        returnPosts = returnPosts.sort((a, b) => { //After the array is with all the elements, we sort by postId alphabetically
+                            return a.title - b.title;
+                        })
+                    } else {
+                        returnPosts = returnPosts.sort((a, b) => { //After the array is with all the elements, we sort by postId alphabetically
+                            return b.title - a.title;
+                        })
+                    }
+                    break
+                }
+
+                case 'author': {
+
+                    if (sortDir == 'asc'){
+                        returnPosts = returnPosts.sort((a, b) => { //After the array is with all the elements, we sort by postId alphabetically
+                            return a.author - b.author;
+                        })
+                    } else {
+                        returnPosts = returnPosts.sort((a, b) => { //After the array is with all the elements, we sort by postId alphabetically
+                            return b.author - a.author;
+                        })
+                    }
+                    break;
+                }
+            }
+        }
+
+        //Paginating
         let paginatedPosts = returnPosts.slice(page*limit - limit, (page*limit));
         let responseData = {
             count: returnPosts.length,

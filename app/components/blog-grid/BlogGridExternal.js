@@ -17,17 +17,17 @@ class BlogGridExternal extends React.Component {
             maxPages: 0,
             currentFilter: '',
             externalResultsPerPage: props.resultsPerPage,
-            externalSortColumn: null,
+            externalSortColumn: 'id',
             externalSortAscending: true,
             columns: [
                 "id", "title", "content", "author", "publishedDate", "actions"
             ],
             columnsMetaData: [
-                { "columnName": "id", "displayName": "ID" },
-                { "columnName": "title", "displayName": "Title", "customComponent": LinkComponent },
-                { "columnName": "content", "displayName": "Content" },
-                { "columnName": "author", "displayName": "Author" },
-                { "columnName": "publishedDate", "displayName": "Date" },
+                { "columnName": "id", "displayName": "ID", "sortable": true },
+                { "columnName": "title", "displayName": "Title", "sortable": true, "customComponent": LinkComponent },
+                { "columnName": "content", "displayName": "Content", "sortable": false },
+                { "columnName": "author", "displayName": "Author", "sortable": true },
+                { "columnName": "publishedDate", "displayName": "Date", "sortable": false },
                 {
                     "columnName": "actions",
                     "displayName": " ",
@@ -42,7 +42,6 @@ class BlogGridExternal extends React.Component {
         this.setPage = this.setPage.bind(this);
         this.changeSort = this.changeSort.bind(this);
         this.setFilter = this.setFilter.bind(this);
-        this.setPageSize = this.setPageSize.bind(this);
 
         this.getExternalData(); //get the data constructor
     }
@@ -61,14 +60,19 @@ class BlogGridExternal extends React.Component {
         this.getExternalData(index);
     }
 
-    //this will handle how the data is sorted
-    sortData(sort, sortAscending, data){
-        //ToDo: missing implementation
-    }
-
     //this changes whether data is sorted in ascending or descending order
     changeSort(sort, sortAscending){
-        //ToDo: missing implementation
+        let sortDir = 'asc';
+        if(sortAscending === false){
+            sortDir = 'desc';
+        }
+
+        this.setState({
+            externalSortColumn: sort,
+            externalSortAscending: sortAscending,
+        });
+
+        this.getExternalData(this.state.currentPage, this.state.currentFilter, sort, sortDir);
     }
 
     //this method handles the filtering of the data
@@ -82,17 +86,25 @@ class BlogGridExternal extends React.Component {
 
     //this method handles determining the page size
     setPageSize(size){
-        //ToDo: missing implementation
+        //Not using it. This is for setting dinamically with the settings/options menu the page quantity
     }
 
-    getExternalData(page, filter){
+    getExternalData(page, filter, sort, sortDir){
         page = page || 1;
 
         if (filter == undefined){
             filter = this.state.currentFilter;
         }
 
-        this.props.actions.loadPosts(page, filter)
+        if (sort == undefined){
+            sort = this.state.externalSortColumn;
+        }
+
+        if (sortDir == undefined){
+            sortDir = this.state.externalSortAscending === true ? 'asc' : 'desc';
+        }
+
+        this.props.actions.loadPosts(page, filter, sort, sortDir)
             .then(() => {
                 this.setState({
                     currentPage: page-1
@@ -112,14 +124,13 @@ class BlogGridExternal extends React.Component {
                     customPagerComponent={BootstrapPager}
                     useExternal={true}
                     externalSetPage={this.setPage}
-                    enableSort={false}
                     externalSetPageSize={this.setPageSize}
                     externalMaxPage={this.state.maxPages}
-                    externalChangeSort={this.changeSort}
                     externalSetFilter={this.setFilter}
                     externalCurrentPage={this.state.currentPage}
                     results={this.state.results}
                     resultsPerPage={this.state.externalResultsPerPage}
+                    externalChangeSort={this.changeSort}
                     externalSortColumn={this.state.externalSortColumn}
                     externalSortAscending={this.state.externalSortAscending}
             />

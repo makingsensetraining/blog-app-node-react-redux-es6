@@ -9,6 +9,8 @@ class BlogController {
         let page = req.query.page;
         let filter = req.query.filter;
         let limit = req.query.limit || 10;
+        let sort = req.query.sort || 'id';
+        let sortDirection = req.query.sortDir || 'asc';
         if (page == 'undefined'){
             page = 1;
         }
@@ -16,7 +18,7 @@ class BlogController {
             filter = false;
         }
 
-        UserService.findAll(page, limit, filter, (err, response) => {
+        UserService.findAll(page, limit, filter, sort, sortDirection, (err, response) => {
             if (err) return next(err);
 
             res.status(200).json(response);
