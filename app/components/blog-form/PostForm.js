@@ -71,7 +71,7 @@ class PostForm extends React.Component {
                         value={this.props.post.content || ''}
                         required
                     />
-                    <div className="pull-right">
+                    <div className="clearfix pull-right">
                         <button type="button" className="btn btn-danger" onClick={this.resetForm}>Reset Values</button>
                         &nbsp;
                         <input type="submit" className="btn btn-primary"
@@ -79,7 +79,7 @@ class PostForm extends React.Component {
                                 value={this.props.saving ? 'Saving... ' : 'Save'}
                         />
                         &nbsp;
-                        <Link to="/app/blog-grid" className="btn btn-default">Cancel</Link>
+                        <a onClick={this.props.onClose} className="btn btn-default">Cancel</a>
                     </div>
                 </Formsy.Form>
             </div>
@@ -90,7 +90,8 @@ class PostForm extends React.Component {
 PostForm.propTypes = {
     onSave: PropTypes.func.isRequired,
     saving: PropTypes.bool.isRequired,
-    post: PropTypes.object.isRequired
+    post: PropTypes.object.isRequired,
+    onClose: PropTypes.func.isRequired
 };
 
 export default PostForm;
