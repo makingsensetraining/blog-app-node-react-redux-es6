@@ -3,8 +3,6 @@ import React, {PropTypes} from 'react';
 const DetailPost = ({post}) => {
     return (
         <div>
-            <h3>Post Detail -{post.title}-</h3>
-            <hr />
             <div className="panel panel-info">
                 <div className="panel-heading">
                     {post.title}

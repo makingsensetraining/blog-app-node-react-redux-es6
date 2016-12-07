@@ -2,11 +2,19 @@ import React, {PropTypes} from 'react';
 import {Link} from 'react-router';
 
 class LinkComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+
+        this.handleOnClick = this.handleOnClick.bind(this);
+    }
+
+    handleOnClick(){
+        this.props.metadata.detailCallback(this.props.rowData.id);
+    }
+
     render() {
-        const {rowData, data} = this.props;
-        let url = rowData.linkDetail;
         return (
-            <Link to={url}>{data}</Link>
+            <a href="#" onClick={this.handleOnClick}>{this.props.data}</a>
         );
     }
 }

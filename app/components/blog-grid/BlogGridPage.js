@@ -6,6 +6,7 @@ import {Link} from 'react-router';
 import * as postActions from '../../actions/postActions';
 import BlogGridExternal from './BlogGridExternal';
 import CreatePostModal from '../blog-form/CreatePostModal';
+import DetailPostModal from '../blog-detail/DetailPostModal';
 import ConfirmModal from '../common/ConfirmModal';
 
 
@@ -15,19 +16,29 @@ class BlogGridPage extends React.Component {
 
         this.handleDeletePost = this.handleDeletePost.bind(this);
         this.openConfirmModal = this.openConfirmModal.bind(this);
+        this.openDetailModal = this.openDetailModal.bind(this);
         this.openNewPostModal = this.openNewPostModal.bind(this);
+        // this.openDetailPost = this.openDetailPost.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
         for (let post of nextProps.posts) {
-            post.linkDetail = `/app/post-detail/${post.id}`;
+            // post.linkDetail = `/app/post-detail/${post.id}`;
             post.linkEdit = `/app/post-edit/${post.id}`;
+
         }
     }
 
     openNewPostModal(){
         this.newPostModal.getWrappedInstance().open();
     }
+
+    // openDetailPost(postId){
+    //     debugger;
+    //     console.log(postId);
+    //     //ToDo: I need to get this postId from somewhere
+    //     this.detailPostModal.getWrappedInstance().open();
+    // }
 
     handleDeletePost(){
         this.props.actions.deletePost(this.state.postToDelete.id)
@@ -37,7 +48,6 @@ class BlogGridPage extends React.Component {
             .catch(error => {
                 toastr.error(error);
             });
-
     }
 
     openConfirmModal(post){
@@ -46,6 +56,10 @@ class BlogGridPage extends React.Component {
         });
 
         this.deleteConfirmModal.open();
+    }
+
+    openDetailModal(postId){
+        this.detailPostModal.getWrappedInstance().open(postId);
     }
 
     render() {
@@ -65,12 +79,19 @@ class BlogGridPage extends React.Component {
                         resultsPerPage={10}
                         useCustomPagerComponent={true}
                         deleteCallback={this.openConfirmModal}
+                        detailCallback={this.openDetailModal}
                     />
 
                     <CreatePostModal
-                        size="md"
                         ref={(child) => { this.newPostModal = child; }}
                     />
+
+
+                    <a onClick={this.openDetailPost} className="btn btn-success">OpenDetail Post</a>
+                    <DetailPostModal
+                        ref={(child) => { this.detailPostModal = child; }}
+                    />
+
 
                     <ConfirmModal
                         title="Post delete"
