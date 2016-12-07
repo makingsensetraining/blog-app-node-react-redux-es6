@@ -6,7 +6,7 @@ export const posts = (state = initialState.posts, action) => {
         case types.LOAD_POST_SUCCESS:
             return action.posts;
 
-        case types.CREATE_POST_SUCCESS:
+        case types.CREATE_POST_SUCCESS: //ToDo: check this reducer.. not working ok with pagination
             return [
                 ...state,
                 Object.assign({}, action.post),
