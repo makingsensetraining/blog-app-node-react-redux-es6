@@ -6,7 +6,7 @@ import AboutPage from './components/about/AboutPage';
 import BlogGridPage from './components/blog-grid/BlogGridPage';
 // import DetailPostPage from './components/blog-detail/DetailPostPage';
 // import CreatePostPageModal from './components/blog-form/CreatePostModal';
-import EditPostPage from './components/blog-form/EditPostPage';
+// import EditPostPage from './components/blog-form/EditPostPage';
 import NotFound from './components/not_found/NotFound';
 
 export default (
@@ -15,7 +15,7 @@ export default (
         <Redirect from="/" to="/app" />
         <Route path="/app/blog-grid" component={BlogGridPage}/>
         {/*<Route path="/app/post-create" component={CreatePostPageModal}/>*/}
-        <Route path="/app/post-edit/:id" component={EditPostPage}/>
+        {/*<Route path="/app/post-edit/:id" component={EditPostPage}/>*/}
         {/*<Route path="/app/post-detail/:id" component={DetailPostPage}/>*/}
         <Route path="/app/about" component={AboutPage}/>
         <Route path="*" component={NotFound}/>

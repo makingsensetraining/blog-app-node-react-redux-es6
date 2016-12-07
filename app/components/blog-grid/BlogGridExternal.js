@@ -37,7 +37,8 @@ class BlogGridExternal extends React.Component {
                     "locked": "true",
                     "cssClassName": "grid-actions-column",
                     "customComponent": ActionsComponent,
-                    "deleteCallback": props.deleteCallback
+                    "deleteCallback": props.deleteCallback,
+                    "editCallback": props.editCallback
                 }
             ]
         };
@@ -155,7 +156,8 @@ BlogGridExternal.propTypes = {
     showFilter: PropTypes.bool,
     useCustomPagerComponent: PropTypes.bool,
     deleteCallback: PropTypes.func.isRequired,
-    detailCallback: PropTypes.func.isRequired
+    detailCallback: PropTypes.func.isRequired,
+    editCallback: PropTypes.func.isRequired
 };
 
 function mapStatesToProps(state, ownProps) {

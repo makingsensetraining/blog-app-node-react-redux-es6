@@ -2,11 +2,11 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import toastr from 'toastr';
-import {Link} from 'react-router';
 import * as postActions from '../../actions/postActions';
 import BlogGridExternal from './BlogGridExternal';
 import CreatePostModal from '../blog-form/CreatePostModal';
 import DetailPostModal from '../blog-detail/DetailPostModal';
+import EditPostModal from '../blog-form/EditPostModal';
 import ConfirmModal from '../common/ConfirmModal';
 
 
@@ -14,11 +14,12 @@ class BlogGridPage extends React.Component {
     constructor(props, context) {
         super(props, context);
 
+        //Mapping events
         this.handleDeletePost = this.handleDeletePost.bind(this);
         this.openConfirmModal = this.openConfirmModal.bind(this);
         this.openDetailModal = this.openDetailModal.bind(this);
         this.openNewPostModal = this.openNewPostModal.bind(this);
-        // this.openDetailPost = this.openDetailPost.bind(this);
+        this.openEditPostModal = this.openEditPostModal.bind(this);
     }
 
     componentWillReceiveProps(nextProps){
@@ -31,6 +32,14 @@ class BlogGridPage extends React.Component {
 
     openNewPostModal(){
         this.newPostModal.getWrappedInstance().open();
+    }
+
+    openEditPostModal(postId){
+        this.editPostModal.getWrappedInstance().open(postId);
+    };
+
+    openDetailModal(postId){
+        this.detailPostModal.getWrappedInstance().open(postId);
     }
 
     handleDeletePost(){
@@ -51,10 +60,6 @@ class BlogGridPage extends React.Component {
         this.deleteConfirmModal.open();
     }
 
-    openDetailModal(postId){
-        this.detailPostModal.getWrappedInstance().open(postId);
-    }
-
     render() {
         return (
             <div className="row">
@@ -73,6 +78,7 @@ class BlogGridPage extends React.Component {
                         useCustomPagerComponent={true}
                         deleteCallback={this.openConfirmModal}
                         detailCallback={this.openDetailModal}
+                        editCallback={this.openEditPostModal}
                     />
 
                     <CreatePostModal
@@ -81,6 +87,10 @@ class BlogGridPage extends React.Component {
 
                     <DetailPostModal
                         ref={(child) => { this.detailPostModal = child; }}
+                    />
+
+                    <EditPostModal
+                        ref={(child) => { this.editPostModal = child; }}
                     />
 
                     <ConfirmModal
