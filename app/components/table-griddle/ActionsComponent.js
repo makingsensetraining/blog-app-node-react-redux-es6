@@ -18,9 +18,6 @@ class ActionsComponent extends React.Component {
     }
 
     render() {
-        const {rowData} = this.props;
-        let urlEdit = rowData.linkEdit;
-
         return (
             <div>
                 <a href="#" onClick={this.handleOnEditClick}>
