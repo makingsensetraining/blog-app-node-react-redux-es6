@@ -33,13 +33,6 @@ class BlogGridPage extends React.Component {
         this.newPostModal.getWrappedInstance().open();
     }
 
-    // openDetailPost(postId){
-    //     debugger;
-    //     console.log(postId);
-    //     //ToDo: I need to get this postId from somewhere
-    //     this.detailPostModal.getWrappedInstance().open();
-    // }
-
     handleDeletePost(){
         this.props.actions.deletePost(this.state.postToDelete.id)
             .then(() => {
@@ -86,12 +79,9 @@ class BlogGridPage extends React.Component {
                         ref={(child) => { this.newPostModal = child; }}
                     />
 
-
-                    <a onClick={this.openDetailPost} className="btn btn-success">OpenDetail Post</a>
                     <DetailPostModal
                         ref={(child) => { this.detailPostModal = child; }}
                     />
-
 
                     <ConfirmModal
                         title="Post delete"
