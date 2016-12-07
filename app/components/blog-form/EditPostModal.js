@@ -29,7 +29,7 @@ class DetailPostModal extends React.Component {
         }
 
         if (nextProps.post.error == 'Post not found'){ //Research if this is the best way to do this.
-            this.context.router.push('/app/blog-grid');
+            this.hide();
         }
 
     }
