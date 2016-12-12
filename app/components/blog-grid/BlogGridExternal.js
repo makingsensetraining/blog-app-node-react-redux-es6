@@ -24,7 +24,10 @@ class BlogGridExternal extends React.Component {
             ],
             columnsMetaData: [
                 { "columnName": "id", "displayName": "ID", "sortable": true },
-                { "columnName": "title", "displayName": "Title", "sortable": true, "customComponent": LinkComponent },
+                { "columnName": "title", "displayName": "Title", "sortable": true,
+                    "customComponent": LinkComponent,
+                    "detailCallback": props.detailCallback
+                },
                 { "columnName": "content", "displayName": "Content", "sortable": false },
                 { "columnName": "author", "displayName": "Author", "sortable": true },
                 { "columnName": "publishedDate", "displayName": "Date", "sortable": false },
@@ -34,7 +37,8 @@ class BlogGridExternal extends React.Component {
                     "locked": "true",
                     "cssClassName": "grid-actions-column",
                     "customComponent": ActionsComponent,
-                    "deleteCallback": props.deleteCallback
+                    "deleteCallback": props.deleteCallback,
+                    "editCallback": props.editCallback
                 }
             ]
         };
@@ -151,7 +155,9 @@ BlogGridExternal.propTypes = {
     useGridStyles: PropTypes.bool,
     showFilter: PropTypes.bool,
     useCustomPagerComponent: PropTypes.bool,
-    deleteCallback: PropTypes.func
+    deleteCallback: PropTypes.func.isRequired,
+    detailCallback: PropTypes.func.isRequired,
+    editCallback: PropTypes.func.isRequired
 };
 
 function mapStatesToProps(state, ownProps) {

@@ -5,25 +5,27 @@ class ActionsComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
 
-        this.handleOnClick = this.handleOnClick.bind(this);
+        this.handleOnDeleteClick = this.handleOnDeleteClick.bind(this);
+        this.handleOnEditClick = this.handleOnEditClick.bind(this);
     }
 
-    handleOnClick(){
+    handleOnEditClick(){
+        this.props.metadata.editCallback(this.props.rowData.id);
+    }
+
+    handleOnDeleteClick(){
         this.props.metadata.deleteCallback(this.props.rowData);
     }
 
     render() {
-        const {rowData} = this.props;
-        let urlEdit = rowData.linkEdit;
-
         return (
             <div>
-                <Link to={urlEdit}>
+                <a href="#" onClick={this.handleOnEditClick}>
                     <i className="glyphicon glyphicon-edit"/>
-                </Link>
+                </a>
                 &nbsp;
                 &nbsp;
-                <a href="#" onClick={this.handleOnClick}>
+                <a href="#" onClick={this.handleOnDeleteClick}>
                     <i className="glyphicon glyphicon-trash"/>
                 </a>
             </div>
