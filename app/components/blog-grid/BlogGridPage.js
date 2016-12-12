@@ -36,7 +36,7 @@ class BlogGridPage extends React.Component {
 
     openEditPostModal(postId){
         this.editPostModal.getWrappedInstance().open(postId);
-    };
+    }
 
     openDetailModal(postId){
         this.detailPostModal.getWrappedInstance().open(postId);

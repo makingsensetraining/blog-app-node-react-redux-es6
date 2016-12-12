@@ -21,7 +21,8 @@ class LinkComponent extends React.Component {
 
 LinkComponent.propTypes = {
     rowData: PropTypes.object.isRequired,
-    data: PropTypes.string.isRequired
+    data: PropTypes.string.isRequired,
+    metadata: PropTypes.object.isRequired
 };
 
 export default LinkComponent;
