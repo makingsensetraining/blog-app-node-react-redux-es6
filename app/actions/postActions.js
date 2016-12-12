@@ -2,8 +2,8 @@ import * as types from './actionTypes';
 import * as endpoints from './apiEndpoints';
 import fetch from 'isomorphic-fetch';
 
-export function loadPostSuccess(count, posts){
-    return { type: types.LOAD_POST_SUCCESS, count, posts };
+export function loadPostSuccess(posts, paginator){
+    return { type: types.LOAD_POST_SUCCESS, posts: posts, paginator: paginator };
 }
 
 export function createPostSuccess(post){
@@ -22,12 +22,12 @@ export function updatePostSuccess(post){
     return { type: types.UPDATE_POST_SUCCESS, post };
 }
 
-export function loadPosts(page, filter, sort, sortDir){
+export function loadPosts(page, limit, filter, sort, sortDir){
     return dispatch => {
 
-        return fetch(endpoints.GET_POSTS + `/?page=${page}&filter=${filter}&sort=${sort}&sortDir=${sortDir}`)
+        return fetch(endpoints.GET_POSTS + `/?page=${page}&limit=${limit}&filter=${filter}&sort=${sort}&sortDir=${sortDir}`)
             .then(response => response.json())
-            .then(response => dispatch(loadPostSuccess(response.count, response.posts)))
+            .then(response => dispatch(loadPostSuccess(response.posts, response.paginator)))
             .catch(error => {
                 throw(error);
             });
@@ -36,7 +36,7 @@ export function loadPosts(page, filter, sort, sortDir){
 
 export function createPost(post){
     return (dispatch, getState) => {
-
+        debugger;
         return fetch(endpoints.POST_POSTS, {
             method: 'POST',
             headers: {
@@ -46,7 +46,11 @@ export function createPost(post){
                 post: post
             })
         }).then(response => response.json())
-          .then(postSaved => dispatch(createPostSuccess(postSaved)))
+          .then(postSaved => {
+              dispatch(createPostSuccess(postSaved));
+              debugger;
+              dispatch(loadPosts());
+          })
           .catch(error => {
               throw(error);
           });

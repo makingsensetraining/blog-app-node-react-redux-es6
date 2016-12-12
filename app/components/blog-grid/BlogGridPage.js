@@ -23,6 +23,7 @@ class BlogGridPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
+        debugger;
         for (let post of nextProps.posts) {
             // post.linkDetail = `/app/post-detail/${post.id}`;
             post.linkEdit = `/app/post-edit/${post.id}`;
@@ -106,21 +107,14 @@ class BlogGridPage extends React.Component {
 }
 
 BlogGridPage.propTypes = {
-    actions: PropTypes.object.isRequired,
-    posts: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        publishedDate: PropTypes.string.isRequired
-    }).isRequired).isRequired
+    actions: PropTypes.object.isRequired
 };
 
 function mapStatesToProps(state, ownProps) {
+
     return {
         state: state,
-        posts: state.posts,
-        count: state.count
+        posts: state.posts.posts
     };
 }
 
