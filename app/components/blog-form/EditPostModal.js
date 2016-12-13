@@ -23,10 +23,8 @@ class DetailPostModal extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        if (this.props.post.id != nextProps.post.id){
-            //Required to populate form when existing course is loaded directly
-            this.setState({ post: Object.assign({}, nextProps.post) });
-        }
+        //Required to populate post form data when the action finished.
+        this.setState({ post: Object.assign({}, nextProps.post) });
 
         if (nextProps.post.error == 'Post not found'){ //Research if this is the best way to do this.
             this.hide();
@@ -48,7 +46,6 @@ class DetailPostModal extends React.Component {
             .then(() => {
                 toastr.success('Post updated successfully');
                 this.setState({ saving: false });
-                //this.redirectOnSave();
                 this.hide();
             })
             .catch(error => {
