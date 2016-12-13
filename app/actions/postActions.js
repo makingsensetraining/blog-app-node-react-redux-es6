@@ -48,7 +48,9 @@ export function createPost(post){
             })
         }).then(response => response.json())
           .then(postSaved => {
-              dispatch(createPostSuccess(postSaved)); //dispatching createPostSuccess for
+              //dispatching createPostSuccess
+              dispatch(createPostSuccess(postSaved));
+              //dispatching loadPost action to update current app state with latest posts data.
               dispatch(loadPosts(currentStatePost.paginator.currentPage, currentStatePost.paginator.limit, currentStatePost.paginator.filter, currentStatePost.paginator.sort, currentStatePost.paginator.sortDir));
           })
           .catch(error => {
