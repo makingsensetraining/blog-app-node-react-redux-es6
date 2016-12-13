@@ -89,7 +89,7 @@ class BlogService {
             posts: paginatedPosts,
             paginator: {
                 limit: parseInt(limit),
-                filter: filter,
+                filter: filter ? filter : '',
                 sort: sort,
                 sortDir: sortDir,
                 count: returnPosts.length,

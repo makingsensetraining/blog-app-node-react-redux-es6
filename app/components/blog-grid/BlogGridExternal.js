@@ -51,8 +51,6 @@ class BlogGridExternal extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        debugger;
-        console.log(nextProps);
         this.setState({
             results: nextProps.posts,
             maxPages: Math.ceil(nextProps.paginator.count/this.state.externalResultsPerPage)
@@ -165,11 +163,10 @@ BlogGridExternal.propTypes = {
 };
 
 function mapStatesToProps(state, ownProps) {
-    debugger;
     return {
         state: state,
-        posts: state.posts.posts,
-        paginator: state.posts.paginator
+        posts: state.postsData.posts,
+        paginator: state.postsData.paginator
     };
 }
 

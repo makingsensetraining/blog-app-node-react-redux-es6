@@ -36,7 +36,8 @@ export function loadPosts(page, limit, filter, sort, sortDir){
 
 export function createPost(post){
     return (dispatch, getState) => {
-        debugger;
+        const currentStatePost = getState().postsData;
+
         return fetch(endpoints.POST_POSTS, {
             method: 'POST',
             headers: {
@@ -47,9 +48,8 @@ export function createPost(post){
             })
         }).then(response => response.json())
           .then(postSaved => {
-              dispatch(createPostSuccess(postSaved));
-              debugger;
-              dispatch(loadPosts());
+              dispatch(createPostSuccess(postSaved)); //dispatching createPostSuccess for
+              dispatch(loadPosts(currentStatePost.paginator.currentPage, currentStatePost.paginator.limit, currentStatePost.paginator.filter, currentStatePost.paginator.sort, currentStatePost.paginator.sortDir));
           })
           .catch(error => {
               throw(error);

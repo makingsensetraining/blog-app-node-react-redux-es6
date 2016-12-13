@@ -23,7 +23,6 @@ class BlogGridPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps){
-        debugger;
         for (let post of nextProps.posts) {
             // post.linkDetail = `/app/post-detail/${post.id}`;
             post.linkEdit = `/app/post-edit/${post.id}`;
@@ -114,7 +113,7 @@ function mapStatesToProps(state, ownProps) {
 
     return {
         state: state,
-        posts: state.posts.posts
+        posts: state.postsData.posts
     };
 }
 
