@@ -106,21 +106,14 @@ class BlogGridPage extends React.Component {
 }
 
 BlogGridPage.propTypes = {
-    actions: PropTypes.object.isRequired,
-    posts: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-        author: PropTypes.string.isRequired,
-        publishedDate: PropTypes.string.isRequired
-    }).isRequired).isRequired
+    actions: PropTypes.object.isRequired
 };
 
 function mapStatesToProps(state, ownProps) {
+
     return {
         state: state,
-        posts: state.posts,
-        count: state.count
+        posts: state.postsData.posts
     };
 }
 

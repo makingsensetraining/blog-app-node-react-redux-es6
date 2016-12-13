@@ -86,8 +86,16 @@ class BlogService {
         //Paginating
         let paginatedPosts = returnPosts.slice(page*limit - limit, (page*limit));
         let responseData = {
-            count: returnPosts.length,
-            posts: paginatedPosts
+            posts: paginatedPosts,
+            paginator: {
+                limit: parseInt(limit),
+                filter: filter ? filter : '',
+                sort: sort,
+                sortDir: sortDir,
+                count: returnPosts.length,
+                currentPage: parseInt(page)
+            }
+
         };
         return cb(null, responseData)
     }

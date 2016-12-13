@@ -53,7 +53,7 @@ class BlogGridExternal extends React.Component {
     componentWillReceiveProps(nextProps) {
         this.setState({
             results: nextProps.posts,
-            maxPages: Math.ceil(nextProps.count/this.state.externalResultsPerPage)
+            maxPages: Math.ceil(nextProps.paginator.count/this.state.externalResultsPerPage)
         });
     }
 
@@ -108,7 +108,9 @@ class BlogGridExternal extends React.Component {
             sortDir = this.state.externalSortAscending === true ? 'asc' : 'desc';
         }
 
-        this.props.actions.loadPosts(page, filter, sort, sortDir)
+        const limit = this.state.externalResultsPerPage;
+
+        this.props.actions.loadPosts(page, limit, filter, sort, sortDir)
             .then(() => {
                 this.setState({
                     currentPage: page-1
@@ -163,8 +165,8 @@ BlogGridExternal.propTypes = {
 function mapStatesToProps(state, ownProps) {
     return {
         state: state,
-        posts: state.posts,
-        count: state.count
+        posts: state.postsData.posts,
+        paginator: state.postsData.paginator
     };
 }
 
