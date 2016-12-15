@@ -78,8 +78,6 @@ class PostForm extends React.Component {
                                 disabled={!this.state.canSubmit}
                                 value={this.props.saving ? 'Saving... ' : 'Save'}
                         />
-                        &nbsp;
-                        <a onClick={this.props.onClose} className="btn btn-default">Cancel</a>
                     </div>
                 </Formsy.Form>
             </div>
@@ -90,8 +88,7 @@ class PostForm extends React.Component {
 PostForm.propTypes = {
     onSave: PropTypes.func.isRequired,
     saving: PropTypes.bool.isRequired,
-    post: PropTypes.object.isRequired,
-    onClose: PropTypes.func.isRequired
+    post: PropTypes.object.isRequired
 };
 
 export default PostForm;

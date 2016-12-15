@@ -16,17 +16,7 @@ class CreatePostModal extends React.Component {
         };
 
         //Mapping events
-        this.open = this.open.bind(this);
-        this.hide = this.hide.bind(this);
         this.handleSavePost = this.handleSavePost.bind(this);
-    }
-
-    open(){
-        this.refs.modal.show();
-    }
-
-    hide(){
-        this.refs.modal.hide();
     }
 
     handleSavePost(post){
@@ -35,7 +25,7 @@ class CreatePostModal extends React.Component {
             .then(() => {
                 toastr.success('Post created successfully');
                 this.setState({ saving: false });
-                this.hide();
+                this.props.hide();
             })
             .catch(error => {
                 toastr.error(error.description);
@@ -46,39 +36,20 @@ class CreatePostModal extends React.Component {
     render() {
         return (
             <div>
-                <DropModal ref="modal">
-                    <div className={`modal-${this.props.size}`}>
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <button type="button" className="close" onClick={this.hide}>×</button>
-                                <h2 className="modal-title">Compose a new Post</h2>
-                            </div>
-                            <div className="modal-body">
-                                <PostForm
-                                    onSave={this.handleSavePost}
-                                    onClose={this.hide}
-                                    saving={this.state.saving}
-                                    post={this.state.post}
-                                />
-                                <br />
-                                <br />
-                            </div>
-                            <div className="modal-footer" />
-                        </div>
-                    </div>
-                </DropModal>
+                <PostForm
+                    onSave={this.handleSavePost}
+                    saving={this.state.saving}
+                    post={this.state.post}
+                />
+                <br />
+                <br />
             </div>
         );
 
     }
 }
 
-CreatePostModal.defaultProps = {
-    size: 'md'
-};
-
 CreatePostModal.propTypes = {
-    size: PropTypes.string,
     actions: PropTypes.object.isRequired,
     post: PropTypes.object
 };

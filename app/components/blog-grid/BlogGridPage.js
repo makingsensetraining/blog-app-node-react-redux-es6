@@ -8,6 +8,7 @@ import CreatePostModal from '../blog-form/CreatePostModal';
 import DetailPostModal from '../blog-detail/DetailPostModal';
 import EditPostModal from '../blog-form/EditPostModal';
 import ConfirmModal from '../common/ConfirmModal';
+import {Link} from 'react-router';
 
 
 class BlogGridPage extends React.Component {
@@ -18,7 +19,7 @@ class BlogGridPage extends React.Component {
         this.handleDeletePost = this.handleDeletePost.bind(this);
         this.openConfirmModal = this.openConfirmModal.bind(this);
         this.openDetailModal = this.openDetailModal.bind(this);
-        this.openNewPostModal = this.openNewPostModal.bind(this);
+        // this.openNewPostModal = this.openNewPostModal.bind(this);
         this.openEditPostModal = this.openEditPostModal.bind(this);
     }
 
@@ -30,9 +31,9 @@ class BlogGridPage extends React.Component {
         }
     }
 
-    openNewPostModal(){
-        this.newPostModal.getWrappedInstance().open();
-    }
+    // openNewPostModal(){
+    //     this.newPostModal.getWrappedInstance().open();
+    // }
 
     openEditPostModal(postId){
         this.editPostModal.getWrappedInstance().open(postId);
@@ -65,9 +66,26 @@ class BlogGridPage extends React.Component {
             <div className="row">
                 <div className="col-md-8 col-md-offset-2">
                     <h2>My Posts - Grid</h2>
-                    <a onClick={this.openNewPostModal} className="btn btn-primary">
+                    <Link to={{
+                              pathname: '/app/post-create',
+                              state: {
+                                  modal: true,
+                                  title: 'Compose a new Post',
+                                  size: 'md',
+                                  returnTo: this.props.location.pathname
+                              }
+                          }}
+                          className="btn btn-primary">
                         <i className="glyphicon glyphicon-plus" /> Write new post
-                    </a>
+                    </Link>
+                    <hr />
+                    <Link
+                        to={{
+                            pathname: '/app/pictures/0',
+                            state: { modal: true, returnTo: this.props.location.pathname }
+                        }}
+                    >Testing</Link>
+
                     <br />
                     <hr />
 
@@ -81,9 +99,9 @@ class BlogGridPage extends React.Component {
                         editCallback={this.openEditPostModal}
                     />
 
-                    <CreatePostModal
-                        ref={(child) => { this.newPostModal = child; }}
-                    />
+                    {/*<CreatePostModal*/}
+                        {/*ref={(child) => { this.newPostModal = child; }}*/}
+                    {/*/>*/}
 
                     <DetailPostModal
                         ref={(child) => { this.detailPostModal = child; }}
