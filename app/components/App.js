@@ -44,15 +44,6 @@ class App extends React.Component {
         console.log('previousChildren: ');
         console.log(this.previousChildren);
 
-        let childrenWithProps;
-        if (isModal){
-            childrenWithProps = React.Children.map(this.props.children,
-                (child) => React.cloneElement(child, {
-                    hide: this.hideModal
-                })
-            );
-        }
-
         return (
             <div>
                 <Header/>
@@ -69,7 +60,7 @@ class App extends React.Component {
                             title={location.state.title}
                             size={location.state.size}
                             ref={(child) => { this.modal = child; }}>
-                                {childrenWithProps}
+                                {React.cloneElement(this.props.children, { hide: this.hideModal })}
                         </AutoOpenModal>
                     )}
                 </div>
