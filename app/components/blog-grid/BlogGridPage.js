@@ -9,6 +9,8 @@ import DetailPostModal from '../blog-detail/DetailPostModal';
 import EditPostModal from '../blog-form/EditPostModal';
 import ConfirmModal from '../common/ConfirmModal';
 
+import {Link} from 'react-router';
+
 
 class BlogGridPage extends React.Component {
     constructor(props, context) {
@@ -65,9 +67,9 @@ class BlogGridPage extends React.Component {
             <div className="row">
                 <div className="col-md-8 col-md-offset-2">
                     <h2>My Posts - Grid</h2>
-                    <a onClick={this.openNewPostModal} className="btn btn-primary">
+                    <Link to="/app/blog-grid#post-create" className="btn btn-primary">
                         <i className="glyphicon glyphicon-plus" /> Write new post
-                    </a>
+                    </Link>
                     <br />
                     <hr />
 
@@ -99,6 +101,8 @@ class BlogGridPage extends React.Component {
                         ref={(child) => { this.deleteConfirmModal = child; }}
                         confirm={this.handleDeletePost}
                     />
+
+
                 </div>
             </div>
         );
