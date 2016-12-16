@@ -39,9 +39,6 @@ export const postsData = (state = initialState, action) => {
                 }
             );
 
-        case types.OPEN_MODAL:
-            return state;
-
         case types.CREATE_POST_SUCCESS:
         default:
             return state;
