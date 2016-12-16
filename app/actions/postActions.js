@@ -22,6 +22,10 @@ export function updatePostSuccess(post){
     return { type: types.UPDATE_POST_SUCCESS, post };
 }
 
+export function openModal(modal){
+    return { type: types.OPEN_MODAL, modal: modal}
+}
+
 export function loadPosts(page, limit, filter, sort, sortDir){
     return dispatch => {
 

@@ -18,7 +18,12 @@ class CreatePostModal extends React.Component {
         //Mapping events
         this.open = this.open.bind(this);
         this.hide = this.hide.bind(this);
+        this.onHide = this.onHide.bind(this);
         this.handleSavePost = this.handleSavePost.bind(this);
+    }
+
+    componentDidMount(){
+        this.open();
     }
 
     open(){
@@ -29,7 +34,12 @@ class CreatePostModal extends React.Component {
         this.refs.modal.hide();
     }
 
+    onHide(){
+        window.location.hash = '!';
+    }
+
     handleSavePost(post){
+        debugger;
         this.setState({ saving: true });
         this.props.actions.createPost(post)
             .then(() => {
@@ -46,7 +56,7 @@ class CreatePostModal extends React.Component {
     render() {
         return (
             <div>
-                <DropModal ref="modal">
+                <DropModal ref="modal" onHide={this.onHide}>
                     <div className={`modal-${this.props.size}`}>
                         <div className="modal-content">
                             <div className="modal-header">
@@ -79,7 +89,7 @@ CreatePostModal.defaultProps = {
 
 CreatePostModal.propTypes = {
     size: PropTypes.string,
-    actions: PropTypes.object.isRequired,
+    actions: PropTypes.object,
     post: PropTypes.object
 };
 

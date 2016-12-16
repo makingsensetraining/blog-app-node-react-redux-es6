@@ -7,6 +7,11 @@ class Modal extends React.Component {
 
         this.open = this.open.bind(this);
         this.hide = this.hide.bind(this);
+        this.onHide = this.onHide.bind(this);
+    }
+
+    componentDidMount(){
+        this.open();
     }
 
     open(){
@@ -17,10 +22,14 @@ class Modal extends React.Component {
         this.refs.modal.hide();
     }
 
+    onHide(){
+        window.location.hash = '!';
+    }
+
     render() {
         return (
             <div>
-                <DropModal ref="modal">
+                <DropModal ref="modal" onHide={this.onHide}>
                     <div className={`modal-${this.props.size}`}>
                         <div className="modal-content">
                             <div className="modal-header">

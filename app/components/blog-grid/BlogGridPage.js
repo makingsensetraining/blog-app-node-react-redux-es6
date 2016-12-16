@@ -20,7 +20,7 @@ class BlogGridPage extends React.Component {
         this.handleDeletePost = this.handleDeletePost.bind(this);
         this.openConfirmModal = this.openConfirmModal.bind(this);
         this.openDetailModal = this.openDetailModal.bind(this);
-        this.openNewPostModal = this.openNewPostModal.bind(this);
+        // this.openNewPostModal = this.openNewPostModal.bind(this);
         this.openEditPostModal = this.openEditPostModal.bind(this);
     }
 
@@ -32,9 +32,9 @@ class BlogGridPage extends React.Component {
         }
     }
 
-    openNewPostModal(){
-        this.newPostModal.getWrappedInstance().open();
-    }
+    // openNewPostModal(){
+    //     this.newPostModal.getWrappedInstance().open();
+    // }
 
     openEditPostModal(postId){
         this.editPostModal.getWrappedInstance().open(postId);
@@ -70,6 +70,10 @@ class BlogGridPage extends React.Component {
                     <Link to="/app/blog-grid#post-create" className="btn btn-primary">
                         <i className="glyphicon glyphicon-plus" /> Write new post
                     </Link>
+
+                    <Link to="/app/blog-grid#test" className="btn btn-primary">
+                        <i className="glyphicon glyphicon-plus" /> test
+                    </Link>
                     <br />
                     <hr />
 
@@ -83,9 +87,9 @@ class BlogGridPage extends React.Component {
                         editCallback={this.openEditPostModal}
                     />
 
-                    <CreatePostModal
-                        ref={(child) => { this.newPostModal = child; }}
-                    />
+                    {/*<CreatePostModal*/}
+                        {/*ref={(child) => { this.newPostModal = child; }}*/}
+                    {/*/>*/}
 
                     <DetailPostModal
                         ref={(child) => { this.detailPostModal = child; }}
