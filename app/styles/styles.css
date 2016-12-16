@@ -32,11 +32,3 @@
 .grid-actions-column {
     width: 70px;
 }
-
-.modal-juampi {
-    display: none;
-}
-
-.modal-juampi:target {
-    display: block;
-}
