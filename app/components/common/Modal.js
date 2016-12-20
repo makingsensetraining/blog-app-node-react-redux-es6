@@ -10,10 +10,6 @@ class Modal extends React.Component {
         this.onHide = this.onHide.bind(this);
     }
 
-    componentDidMount(){
-        this.open();
-    }
-
     open(){
         this.refs.modal.show();
     }

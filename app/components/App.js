@@ -2,13 +2,10 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import Header from './common/Header';
 import Footer from './common/Footer';
-import Modal from './common/Modal';
 import CreatePostModal from './blog-form/CreatePostModal';
 
 function getModal(search) {
     switch (search) {
-        case '#test':
-            return <Modal title="title" body="Testing Modal"/>;
         case '#post-create':
             return <CreatePostModal />;
         default:

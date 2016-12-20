@@ -39,17 +39,16 @@ class CreatePostModal extends React.Component {
     }
 
     handleSavePost(post){
-        debugger;
-        this.setState({ saving: true });
+        this.setState({saving: true});
         this.props.actions.createPost(post)
             .then(() => {
                 toastr.success('Post created successfully');
-                this.setState({ saving: false });
+                this.setState({saving: false});
                 this.hide();
             })
             .catch(error => {
                 toastr.error(error.description);
-                this.setState({ saving:false });
+                this.setState({saving: false});
             });
     }
 
